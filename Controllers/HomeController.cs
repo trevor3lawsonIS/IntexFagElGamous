@@ -186,9 +186,17 @@ namespace IntexFagElGamous.Controllers
             return View(x);
         }
 
-        public IActionResult CRUD()
+        [HttpGet]
+        public IActionResult CRUDadd()
         {
-            return View();
+            return View("CRUDadd", new Burialmain());
+        }
+        [HttpPost]
+        public IActionResult CRUDadd(Burialmain burial)
+        {
+            IntexContext.Add(burial);
+            IntexContext.SaveChanges();
+            return View("CRUDconfirm", burial);
         }
 
         public IActionResult Privacy()
