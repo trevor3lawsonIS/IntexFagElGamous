@@ -166,7 +166,6 @@ namespace IntexFagElGamous.Controllers
         public IActionResult Summary(long id)
         {
             var burial = IntexContext.Burialmains.Single(x=>x.Id == id);
-
             return View(burial);
         }
 
@@ -174,10 +173,17 @@ namespace IntexFagElGamous.Controllers
         {
             return View();
         }
+      
 
+        [HttpGet]
         public IActionResult Unsupervised()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult Unsupervised(ChartModel x)
+        {
+            return View(x);
         }
 
         public IActionResult CRUD()

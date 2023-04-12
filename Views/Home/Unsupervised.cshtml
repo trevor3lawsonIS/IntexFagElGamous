@@ -3,3 +3,78 @@
 *@
 @{
 }
+
+
+@*@using Plotly.Blazor
+@using Plotly.Blazor.TraceObjects
+@using Plotly.Blazor.LayoutObjects*@
+
+@model ChartModel
+
+<div class="text-center">
+    <div class="text-center">
+        <h1 class="display-4">Mummy Age Exploration</h1>
+        <form method="post">
+            <label for="Chart">Choose to view relationship with Age: </label>
+            <select asp-for="Chart" id="Chart">
+                <option value="A">Adult vs Children</option>
+                <option value="B">Depth</option>
+                <option value="C">Head Direction</option>
+                <option value="F">Wrapping</option>
+            </select>
+            <br />
+            <br />
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <br />
+
+        @{
+            if (Model != null)
+            {
+                switch (Model.Chart)
+                {
+                    case "A":
+                        <img src="~/img/ageadultsubadult.png" height="400px" width="600px" />
+                        <p>
+                            In this graphic, Mummy Age is from earliest to lastest going left to right. On the y-axis, one represents a child and zero represents an adult. The different colors represent clusters of data that are similar to each other.<br>
+                            As you can see, no children were before 1900 years ago. This could represent a correlation between the age of the mummy and whether they were a child or adult. <br>
+                            One possible reason for this change was that mummification could have become more widely availble to society as time went on.
+                        </p>
+                        break;
+                    case "B":
+                        <img src="~/img/agedepth.png" height="400px" width="600px" />
+                        <p>
+                            In this graphic, Mummy Age is from earliest to lastest going left to right. On the y-axis, Depth is measure in meters from the surface. The different colors represent clusters of data that are similar to each other. <br>
+                            There is a clear coorelation between mummy age and burial depth. Mummies buried ealier were burried less deep than mummies buried long ago.<br>
+                        </p>
+                        break;
+                    case "C":
+                        <img src="~/img/ageheaddirection.png" height="400px" width="600px" />
+                        <p>
+                            In this graphic, Mummy Age is from earliest to lastest going left to right. On the y-axis, the head direction facing west is one and east is zero. The different colors represent clusters of data that are similar to each other. <br>
+                            Although there is no clear correlation between mummy age and head direction, in this dataset there were no mummies burried after 1800 years ago with their heads facing west. <br>
+                            Society and cultural beliefs often affected burial positions of the dead. One possible reason that head direction changed overtime could be that religous or societal beliefs changed.
+                        </p>
+                        break;
+                    case "F":
+                        <img src="~/img/agewrapping.png" height="400px" width="600px" />
+                        <p>
+                            In this graphic, Mummy Age is from earliest to lastest going left to right. On the y-axis, two represents the whole body being covered when burried, one represents half of the body being covered when burried, and zero represents no covering found on the body. The different colors represent clusters of data that are similar to each other. <br>
+                            This graph show that wrapping in mummification was less common on older mummies. <br>
+                            One reason for this might be that older mummies were burried deeper so less preservation was needed, or maybe wrappings were hard to come by back then so they burried them deeper in the ground.
+                        </p>
+                        break;
+                }
+
+            }
+        }
+
+        @*        <div id="chart"> @(await Html.PlotlyChart(Model, new Layout { Width = 800, Height = 500 })) </div>
+        *@
+    </div>
+</div>
+
+@*<script>
+    // Render the graph in the "chart" div
+    Plotly.newPlot('chart', @Html.Raw(Json.Serialize(Model)));
+</script>*@
