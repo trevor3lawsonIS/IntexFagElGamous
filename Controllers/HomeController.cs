@@ -164,15 +164,21 @@ namespace IntexFagElGamous.Controllers
         }
 
 
-
         public IActionResult Supervised()
         {
             return View();
         }
+      
 
+        [HttpGet]
         public IActionResult Unsupervised()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult Unsupervised(ChartModel x)
+        {
+            return View(x);
         }
 
         public IActionResult CRUD()
