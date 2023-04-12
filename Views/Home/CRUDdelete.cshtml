@@ -9,7 +9,7 @@
 
 <form method="post" asp-controller="Home" asp-action="CRUDdelete">
     <button type="submit">Delete</button>
-    <a asp-action="Burials" class="btn btn-primary">Cancel</a>
+    <a asp-action="Summary" asp-route-id="@Model.Id" class="btn btn-primary">Cancel</a>
 
     <input type="hidden" asp-for="Id" />
 </form>
