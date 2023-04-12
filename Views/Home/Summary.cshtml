@@ -3,6 +3,9 @@
 *@
 @{
 }
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 @model Burialmain
 
 <h4>Mummy ID: @Model.Id</h4>
@@ -12,8 +15,13 @@
         <tr>
             <th>Burial Number:</th>
             <th colspan="2">@Model.Burialnumber</th>
-            <th><a asp-controller="Home" asp-action="CRUDedit" asp-route-id="@Model.Id" class="btn"><img src="~/img/icons8-edit.svg" />Edit</a>
-                <a asp-controller="Home" asp-action="CRUDdelete" asp-route-id="@Model.Id" class="btn"><img src="~/img/icons8-delete-30.png" />Delete</a></th>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <th>
+                    <a asp-controller="Home" asp-action="CRUDedit" asp-route-id="@Model.Id" class="btn"><img src="~/img/icons8-edit.svg" />Edit</a>
+                    <a asp-controller="Home" asp-action="CRUDdelete" asp-route-id="@Model.Id" class="btn"><img src="~/img/icons8-delete-30.png" />Delete</a>
+                </th>
+            }
             
         </tr>
         <tr>
