@@ -22,10 +22,12 @@
                 <option value="B">Depth</option>
                 <option value="C">Head Direction</option>
                 <option value="F">Wrapping</option>
+                <option value="G">Show 3d Graph</option>
             </select>
             <br />
             <br />
             <button type="submit" class="btn btn-primary">Submit</button>
+
         </form>
         <br />
 
@@ -70,6 +72,12 @@
                             Understanding the factors that influenced the wrapping of mummies provides valuable insights into the religious and cultural practices of ancient Egyptian society.
                         </p>
                         break;
+                    case "G":
+                        <img src="~/img/3dgraph.png" height="600px" width="700px" />
+                        <p>
+                            The graphic shows a 3d representation of Burial Depth, Mummy Age, and Wrapping Type. The different colors represent clusters of data that are similar to each other.
+                        </p>
+                        break;
                 }
 
             }
@@ -79,6 +87,7 @@
         *@
     </div>
 </div>
+
 
 @*<script>
     // Render the graph in the "chart" div
