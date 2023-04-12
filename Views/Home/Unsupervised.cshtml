@@ -17,6 +17,7 @@
         <form method="post">
             <label for="Chart">Choose to view relationship with Age: </label>
             <select asp-for="Chart" id="Chart">
+                <option>Select an Option:</option>
                 <option value="A">Adult vs Children</option>
                 <option value="B">Depth</option>
                 <option value="C">Head Direction</option>
@@ -36,32 +37,37 @@
                     case "A":
                         <img src="~/img/ageadultsubadult.png" height="400px" width="600px" />
                         <p>
-                            In this graphic, Mummy Age is from earliest to lastest going left to right. On the y-axis, one represents a child and zero represents an adult. The different colors represent clusters of data that are similar to each other.<br>
-                            As you can see, no children were before 1900 years ago. This could represent a correlation between the age of the mummy and whether they were a child or adult. <br>
-                            One possible reason for this change was that mummification could have become more widely availble to society as time went on.
+                            In this graphic, Mummy Age is from earliest to lastest going left to right. On the y-axis, one represents a child and zero represents an adult. The different colors represent clusters of data that are similar to each other.<br><br>
+                            As you can see, no children were before 1900 years ago. This could represent a correlation between the age of the mummy and whether they were a child or adult. <br><br>
+                            One possible reason for this change was that mummification was reserved for the elite class early on. It was more common for an adult to be mummified vs a child. <br><br>
+                            However, after mummification became more widely spread, more people that could become mummified would do it regardless of social status or age. 
                         </p>
                         break;
                     case "B":
                         <img src="~/img/agedepth.png" height="400px" width="600px" />
                         <p>
-                            In this graphic, Mummy Age is from earliest to lastest going left to right. On the y-axis, Depth is measure in meters from the surface. The different colors represent clusters of data that are similar to each other. <br>
-                            There is a clear coorelation between mummy age and burial depth. Mummies buried ealier were burried less deep than mummies buried long ago.<br>
+                            In this graphic, Mummy Age is from earliest to lastest going left to right. On the y-axis, Depth is measure in meters from the surface. The different colors represent clusters of data that are similar to each other. <br><br>
+                            The data collected by the BYU Egypt team reveals a trend in decreasing depth of burial for mummies over time, suggesting that older mummies were buried deeper than more recent ones. This could be due to the hierarchy of the dead, where the more important the person, the deeper their tomb should be. <br><br>
+                            Additionally, the availability of burial space may have played a role, with more recent mummies being buried more shallow due to a lack of space. <br><br>
+                            These factors, among others, may have influenced the depth of burial for ancient Egyptian mummies.
                         </p>
                         break;
                     case "C":
                         <img src="~/img/ageheaddirection.png" height="400px" width="600px" />
                         <p>
-                            In this graphic, Mummy Age is from earliest to lastest going left to right. On the y-axis, the head direction facing west is one and east is zero. The different colors represent clusters of data that are similar to each other. <br>
-                            Although there is no clear correlation between mummy age and head direction, in this dataset there were no mummies burried after 1800 years ago with their heads facing west. <br>
-                            Society and cultural beliefs often affected burial positions of the dead. One possible reason that head direction changed overtime could be that religous or societal beliefs changed.
+                            In this graphic, Mummy Age is from earliest to lastest going left to right. On the y-axis, the head direction facing west is one and east is zero. The different colors represent clusters of data that are similar to each other. <br><br>
+                            Although there is no clear correlation between mummy age and head direction, in this dataset there were no mummies burried after 1800 years ago with their heads facing west. <br><br>
+                            BYU Egypt Archeology team's discovery of East or West-facing mummies provides insight into Ancient Egyptian beliefs. The direction of burial may indicate the mummy's association with the sun or the afterlife. Additionally, East-facing mummies may be of Christian or Muslim origin, aligned towards Mecca or Jerusalem. <br><br>
+                            These findings offer valuable information about ancient Egyptian religious and cultural practices.
                         </p>
                         break;
                     case "F":
                         <img src="~/img/agewrapping.png" height="400px" width="600px" />
                         <p>
-                            In this graphic, Mummy Age is from earliest to lastest going left to right. On the y-axis, two represents the whole body being covered when burried, one represents half of the body being covered when burried, and zero represents no covering found on the body. The different colors represent clusters of data that are similar to each other. <br>
-                            This graph show that wrapping in mummification was less common on older mummies. <br>
-                            One reason for this might be that older mummies were burried deeper so less preservation was needed, or maybe wrappings were hard to come by back then so they burried them deeper in the ground.
+                            In this graphic, Mummy Age is from earliest to lastest going left to right. On the y-axis, two represents the whole body being covered when burried, one represents half of the body being covered when burried, and zero represents no covering found on the body. The different colors represent clusters of data that are similar to each other. <br><br>
+                            The wrapping of mummies discovered by the BYU Egypt Archeology team varied significantly, with some mummies fully wrapped, others partially wrapped, and some not wrapped at all. This variation can be attributed to several factors, including the social status of the individual, their condition at the time of mummification, and their religious beliefs.<br><br>
+                            Wealthy or prominent individuals were usually wrapped more elaborately as a symbol of their status, while those of lower social status may have only been partially wrapped or left unwrapped. Additionally, Christian or Muslim mummies may have been buried without wrapping due to their different beliefs regarding the afterlife.<br><br>
+                            Understanding the factors that influenced the wrapping of mummies provides valuable insights into the religious and cultural practices of ancient Egyptian society.
                         </p>
                         break;
                 }
