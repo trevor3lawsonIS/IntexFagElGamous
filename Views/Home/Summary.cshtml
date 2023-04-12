@@ -5,6 +5,150 @@
 }
 @model Burialmain
 
-<h4>Success</h4>
-<h2>@Model.Sex</h2>
-<h2>@Model.Depth</h2>
+<h4>Mummy ID: @Model.Id</h4>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Burial Number:</th>
+            <th colspan="2">@Model.Burialnumber</th>
+            <th><button class="btn"><img src="~/img/icons8-edit.svg" /></button></th>
+            
+        </tr>
+        <tr>
+            <th colspan="2">Location: </th>
+            <th colspan="2">@Model.Squarenorthsouth @Model.Northsouth / @Model.Squareeastwest @Model.Eastwest / @Model.Area</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Sex:</td>
+            @if(Model.Sex == "M")
+                {
+                <td>Male</td>
+            }
+            else if (Model.Sex == "F")
+            {
+                <td>Female</td>
+            }
+            else
+            {
+                <td>Unknown</td>
+            }
+            <td>Depth:</td>
+            <td>@Model.Depth Meters</td>
+        </tr>
+        <tr>
+            <td>Head Direction:</td>
+            @if(Model.Headdirection == "E")
+            {
+                <td>East</td>
+            }
+            else if (Model.Headdirection == "W")
+            {
+                <td>West</td>
+            }
+            else
+            {
+                <td>Unknown</td>
+            }
+            <td>Age at Death:</td>
+            @if(Model.Ageatdeath == "A")
+            {
+                <td>Adult</td>
+            }
+            else if(Model.Ageatdeath == "C")
+            {
+                <td>Child</td>
+            }
+            else if(Model.Ageatdeath == "I")
+            {
+                <td>Infant</td>
+            }
+            else if(Model.Ageatdeath == "N")
+            {
+                <td>Newborn</td>
+            }
+            else
+            {
+                <td>Unkown</td>
+            }
+        </tr>
+        <tr>
+            <td>Wrapping:</td>
+            @if(Model.Wrapping == "W")
+            {
+                <td>Full Wrapping</td>
+            }
+            else if(Model.Wrapping == "H")
+            {
+                <td>Partial Wrapping</td>
+            }
+            else if(Model.Wrapping == "B")
+            {
+                <td>Bones/No Wrapping</td>
+            }
+            else
+            {
+                <td>Unknown</td>
+            }
+            <td>Hair Color:</td>
+            @if(Model.Haircolor == "B")
+            {
+                <td>Brown/Dark Brown/ Lt Brown</td>
+            }
+            else if(Model.Haircolor == "K")
+            {
+                <td>Black</td>
+            }
+            else if(Model.Haircolor == "A")
+            {
+                <td>Red/Red-Black</td>
+            }
+            else if(Model.Haircolor == "D")
+            {
+                <td>Blond</td>
+            }
+            else
+            {
+                <td>Unknown</td>
+            }
+        </tr>
+        <tr>
+            <td>Face bundle:</td>
+            @if(Model.Facebundles == "Y")
+            {
+                <td>Yes</td>
+            }
+            else
+            {
+                <td>None</td>
+            }
+            <td>Goods:</td>
+            @if(Model.Goods == "Y")
+            {
+                <td>Yes</td>
+            }
+            else
+            {
+                <td>None</td>
+            }
+        </tr>
+        <tr>
+            <td>Preservation:</td>
+            <td>@Model.Preservation</td>
+            <td>Field Book Page: </td>
+            <td>@Model.Fieldbookpage</td>
+        </tr>
+        <tr>
+            <td>Year of Excavation:</td>
+            <td>@Model.Fieldbookexcavationyear</td>
+            <td>Cluster Number:</td>
+            <td>@Model.Clusternumber</td>
+        </tr>
+        <tr>
+            <td>Text:</td>
+            <td colspan="3"></td>
+        </tr>
+    </tbody>
+</table>
