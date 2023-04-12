@@ -1,5 +1,15 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Delete Burial";
 }
+
+@model Burialmain
+
+<h2>Confirm Deletion</h2>
+<h3>Are you sure you want to delete the record for @Model.Id?</h3>
+
+<form method="post" asp-controller="Home" asp-action="CRUDdelete">
+    <button type="submit">Delete</button>
+    <a asp-action="Burials" class="btn btn-primary">Cancel</a>
+
+    <input type="hidden" asp-for="Id" />
+</form>

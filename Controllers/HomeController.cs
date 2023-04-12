@@ -199,6 +199,19 @@ namespace IntexFagElGamous.Controllers
             return View("CRUDconfirm", burial);
         }
 
+        [HttpGet]
+        public IActionResult CRUDdelete(int id)
+        {
+            var burial = IntexContext.Burialmains.Single(x => x.Id == id);
+            return View(burial);
+        }
+        [HttpPost]
+        public IActionResult CRUDdelete(Burialmain burial)
+        {
+            IntexContext.Burialmains.Remove(burial);
+            IntexContext.SaveChanges();
+            return RedirectToAction("Burials");
+        }
         public IActionResult Privacy()
         {
             return View();
