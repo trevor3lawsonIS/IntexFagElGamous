@@ -1,9 +1,9 @@
-namespace IntexFagElGamous.Models
-{
-    public class ErrorViewModel
-    {
-        public string? RequestId { get; set; }
+﻿namespace INTEX_API_Calling.Models;
 
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-    }
+public class ErrorViewModel
+{
+    public string? RequestId { get; set; }
+
+    public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 }
+

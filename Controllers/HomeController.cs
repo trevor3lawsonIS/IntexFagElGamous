@@ -1,205 +1,142 @@
-﻿using IntexFagElGamous.Models.ViewModels;
-using IntexFagElGamous.Models;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+using INTEX_API_Calling.Models;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
-namespace IntexFagElGamous.Controllers
+namespace INTEX_API_Calling.Controllers;
+
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    private readonly HttpClient _httpClient;
+
+    public HomeController()
     {
-        private intexmummyContext IntexContext { get; set; }
+        _httpClient = new HttpClient();
+    }
 
-        public HomeController(intexmummyContext intexContext)
+    [HttpGet]
+    public ActionResult Index()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Index(float depth, string sex, string adultchild, string goods, string wrapping)
+    {
+        // Set the API endpoint URL
+        string apiUrl = "http://52.70.13.136/predict";
+
+        int adultsubadult_C;
+        int goods_Other;
+        int wrapping_H;
+        int wrapping_W;
+
+        // Create an input object from the user-provided data
+        if (adultchild == "Adult")
         {
-            IntexContext = intexContext;
+            adultsubadult_C = 0;
+        }
+        else
+        {
+            adultsubadult_C = 1;
+
         }
 
-        public IActionResult Index()
+        if (goods == "Yes")
         {
-            return View();
+            goods_Other = 1;
+        }
+        else
+        {
+            goods_Other = 0;
+
         }
 
-        [HttpGet]
-        public IActionResult Burials(int pageNum = 1)
+        if (wrapping == "Whole")
         {
-            int pageSize = 20;
-
-            ViewBag.Changes = new FilterViewModel();
-
-            var x = new BurialViewModel
-            {
-                Burialmains = IntexContext.Burialmains
-                .OrderBy(x => x.Id)
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize),
-
-                PageInfo = new PageInfo
-                {
-                    TotalNumBurials = IntexContext.Burialmains.Count(),
-                    BurialsPerPage = pageSize,
-                    CurrentPage = pageNum
-                }
-            };
-
-            return View(x);
+            wrapping_H = 0;
+            wrapping_W = 1;
+        }
+        else
+        {
+            wrapping_H = 1;
+            wrapping_W = 0;
         }
 
-        [HttpPost]
-        public IActionResult Burials([FromForm] FilterViewModel filter, int pageNum = 1)
+        var inputData = new { depth = depth, adultsubadult_C = adultsubadult_C, goods_Other = goods_Other, wrapping_H = wrapping_H, wrapping_W = wrapping_W };
+
+        // Serialize the input object to JSON
+        string inputDataJson = JsonConvert.SerializeObject(inputData);
+
+        // Set the content type and the input data in the request body
+        StringContent content = new StringContent(inputDataJson, System.Text.Encoding.UTF8, "application/json");
+
+        // Send the POST request to the API endpoint and wait for the response
+        HttpResponseMessage response = await _httpClient.PostAsync(apiUrl, content);
+        string responseContent = await response.Content.ReadAsStringAsync();
+
+        // Check if the request was successful (status code 200)
+        if (response.IsSuccessStatusCode)
         {
+            // Deserialize the JSON response into a result object
+            ModelResult ResultFromApi = JsonConvert.DeserializeObject<ModelResult>(responseContent);
 
-            IQueryable<Burialmain> filteredBurials = IntexContext.Burialmains;
+            // Pass the prediction result to the view and render it
 
-            if (filter.Male)
-            {
-                if (filter.Female)
-                {
-                    filteredBurials = filteredBurials.Where(x => x.Sex == "F" || x.Sex == "M");
-                }
-                else
-                {
-                    filteredBurials = filteredBurials.Where(x => x.Sex == "M");
-                }
-                
-            }
-            else if (filter.Female)
-            {
-                filteredBurials = filteredBurials.Where(x => x.Sex == "F");
-            }
+            //TempData["Result"] = Result;
 
-            if (filter.West)
-            {
-                if (filter.East)
-                {
-                    filteredBurials = filteredBurials.Where(x => x.Headdirection == "E" || x.Headdirection == "W");
-                }
-                else
-                {
-                    filteredBurials = filteredBurials.Where(x => x.Headdirection == "W");
-                }
-            }
-            else if (filter.East)
-            {
-                filteredBurials = filteredBurials.Where(x => x.Headdirection == "E");
-            }
+            return RedirectToAction("MyResult", ResultFromApi);
 
-            //if (filter.MinDepth != null)
-            //{
-            //    filteredBurials = filteredBurials.Where(x => int.Parse(x.Depth) >= int.Parse(filter.MinDepth));
-            //}
+        }
+        else
+        {
+            // Pass the error message to the view and render it
+            string errorMessage = $"Prediction API error ({response.StatusCode}): {responseContent}";
+            return View("PredictionError", errorMessage);
+        }
+    }
 
-            //if (filter.MaxDepth != null)
-            //{
-            //    filteredBurials = filteredBurials.Where(x => int.Parse(x.Depth) <= int.Parse(filter.MaxDepth));
-            //}
+    [HttpGet]
+    public ActionResult MyResult(int ResultFromApi)
+    {
+        string ResultString = "";
 
-            if (filter.Adult)
-            {
-                if (filter.Child)
-                {
-                    filteredBurials = filteredBurials.Where(x => x.Adultsubadult == "C" || x.Adultsubadult == "A");
-                }
-                else
-                {
-                    filteredBurials = filteredBurials.Where(x => x.Adultsubadult == "A");
-                }
-            }
-            else if (filter.Child)
-            {
-                filteredBurials = filteredBurials.Where(x => x.Adultsubadult == "C");
-            }
-
-            // ADD THIS FUNCTIONALITY LATER! FIND A WAY THAT DOES NOT INCLUDE 100000 NESTED IF STATEMENTS
-            if (filter.Brown)
-            {
-                filteredBurials = filteredBurials.Where(x => x.Haircolor == "B");
-            }
-
-            if (filter.Black)
-            {
-                filteredBurials = filteredBurials.Where(x => x.Haircolor == "K");
-            }
-
-            if (filter.BrownRed)
-            {
-                filteredBurials = filteredBurials.Where(x => x.Haircolor == "A");
-            }
-
-            if (filter.Red)
-            {
-                filteredBurials = filteredBurials.Where(x => x.Haircolor == "R");
-            }
-
-            if (filter.Blond)
-            {
-                filteredBurials = filteredBurials.Where(x => x.Haircolor == "D");
-            }
-
-            if (filter.Unknown)
-            {
-                filteredBurials = filteredBurials.Where(x => x.Haircolor == "U");
-            }
-
-            List<Burialmain> results = filteredBurials.ToList();
-
-            ViewBag.Changes = filter;
-
-            var pageSize = 20;
-            var x = new BurialViewModel
-            {
-                Burialmains = filteredBurials
-                .OrderBy(x => x.Id)
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize),
-
-                PageInfo = new PageInfo
-                {
-                    TotalNumBurials = filteredBurials.Count(),
-                    BurialsPerPage = pageSize,
-                    CurrentPage = pageNum
-                }
-            };
-
-            return View(x);
+        if (ResultFromApi == 1)
+        {
+            ResultString = "West";
+        }
+        else
+        {
+            ResultString = "East";
         }
 
-        public IActionResult Summary(long id)
-        {
-            var burial = IntexContext.Burialmains.Single(x=>x.Id == id);
-            return View(burial);
-        }
+        PredictionResult result = new PredictionResult { Result = ResultString };
+        return View(result);
+    }
 
-        public IActionResult Supervised()
-        {
-            return View();
-        }
-      
+    //[HttpGet]
+    //public ActionResult MyResult()
+    //{
+    //    // Retrieve the result from the session
+    //    var resultFromTempData = (string)TempData["Result"];
 
-        [HttpGet]
-        public IActionResult Unsupervised()
-        {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Unsupervised(ChartModel x)
-        {
-            return View(x);
-        }
+    //    // Create a new instance of MyViewModel and set its properties
+    //    var myMummyResult = new MummyResult
+    //    {
+    //        Result = resultFromTempData
+    //    };
 
-        public IActionResult CRUD()
-        {
-            return View();
-        }
+    //    // Pass the view model to the view
+    //    return View(myMummyResult);
+    //}
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+    //Define a class to deserialize the JSON response into
+    public class ModelResult
+    {
+        public float Prediction { get; set; }
     }
 }
