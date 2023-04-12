@@ -163,7 +163,12 @@ namespace IntexFagElGamous.Controllers
             return View(x);
         }
 
+        public IActionResult Summary(long id)
+        {
+            var burial = IntexContext.Burialmains.Single(x=>x.Id == id);
 
+            return View(burial);
+        }
 
         public IActionResult Supervised()
         {
