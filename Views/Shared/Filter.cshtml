@@ -16,12 +16,12 @@
     <br />
     <input type="checkbox" asp-for="East" />
     <label asp-for="East">East</label>
-    @*        <h5>Enter Burial Depth Range</h5>
-    <label for="MinDepth">Minimum depth:</label>
-    <input type="number" id="MinDepth" name="MinDepth" min="0" step="0.01">
+            <h5>Enter Burial Depth Range</h5>
+    <label asp-for="MinDepth">Minimum depth:</label>
+    <input type="number" asp-for="MinDepth" min="0" step="0.01">
 
-    <label for="MaxDepth">Maximum depth:</label>
-    <input type="number" id="MaxDepth" name="MaxDepth" min="0" step="0.01">*@
+    <label asp-for="MaxDepth">Maximum depth:</label>
+    <input type="number" asp-for="MaxDepth" min="0" step="0.01">
     <h5>Choose Adult/Child</h5>
     <input type="checkbox" asp-for="Adult" />
     <label asp-for="Adult">Adult</label>
@@ -46,6 +46,17 @@
     <br />
     <input type="checkbox" asp-for="Unknown" />
     <label asp-for="Unknown">Unknown</label>
-    <br /><br /><br />
+    <br />
+    <h5>Choose Wrapping Type</h5>
+    <input type="checkbox" asp-for="Full" />
+    <label asp-for="Full">Full Wrapping</label>
+    <br />
+    <input type="checkbox" asp-for="Partial" />
+    <label asp-for="Partial">Partial Wrapping</label>
+    <br />
+    <input type="checkbox" asp-for="Bones" />
+    <label asp-for="Bones">Only Bones or Limited Wrapping</label><br />
+
+    <br /><br />
     <button type="submit" class="btn btn-primary">Search</button>
 </form>

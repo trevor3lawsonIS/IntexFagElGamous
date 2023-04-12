@@ -84,15 +84,15 @@ namespace IntexFagElGamous.Controllers
                 filteredBurials = filteredBurials.Where(x => x.Headdirection == "E");
             }
 
-            //if (filter.MinDepth != null)
-            //{
-            //    filteredBurials = filteredBurials.Where(x => int.Parse(x.Depth) >= int.Parse(filter.MinDepth));
-            //}
+            if (filter.MinDepth != null)
+            {
+                filteredBurials = filteredBurials.Where(x => Convert.ToDecimal(x.Depth) >= filter.MinDepth);
+            }
 
-            //if (filter.MaxDepth != null)
-            //{
-            //    filteredBurials = filteredBurials.Where(x => int.Parse(x.Depth) <= int.Parse(filter.MaxDepth));
-            //}
+            if (filter.MaxDepth != null)
+            {
+                filteredBurials = filteredBurials.Where(x => Convert.ToDecimal(x.Depth) <= filter.MaxDepth);
+            }
 
             if (filter.Adult)
             {
@@ -145,6 +145,27 @@ namespace IntexFagElGamous.Controllers
             if (hairColors.Count > 0)
             {
                 filteredBurials = filteredBurials.Where(x => hairColors.Contains(x.Haircolor));
+            }
+
+            var wrapping = new List<string>();
+
+            if (filter.Full)
+            {
+                wrapping.Add("W");
+            }
+
+            if (filter.Partial)
+            {
+                wrapping.Add("H");
+            }
+
+            if (filter.Bones)
+            {
+                wrapping.Add("B");
+            }
+            if (wrapping.Count > 0)
+            {
+                filteredBurials = filteredBurials.Where(x => wrapping.Contains(x.Wrapping));
             }
 
             List<Burialmain> results = filteredBurials.ToList();
