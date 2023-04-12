@@ -14,7 +14,8 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: tan;
 }
 
 
@@ -61,3 +62,34 @@ body {
         color: gray;
         text-decoration: underline;
     }
+
+
+h1 {
+    font-family: 'Courier New';
+    color: dimgrey;
+}
+
+h2 {
+    font-family: 'Courier New';
+    color: dimgrey
+}
+
+h3 {
+    font-family: 'Courier New';
+    color: dimgrey
+}
+
+a {
+    font-family: 'Courier New';
+    color: dimgrey;
+}
+
+p {
+    font-family: 'Courier New';
+    color: dimgrey;
+}
+
+li {
+    font-family: 'Courier New';
+    color: dimgrey;
+}
