@@ -10,24 +10,34 @@
     <br />
     <input type="checkbox" asp-for="Female" />
     <label asp-for="Female">Female</label>
+
     <h5>Choose Head Direction</h5>
     <input type="checkbox" asp-for="West" />
     <label asp-for="West">West</label>
     <br />
     <input type="checkbox" asp-for="East" />
     <label asp-for="East">East</label>
+
             <h5>Enter Burial Depth Range</h5>
     <label asp-for="MinDepth">Minimum depth:</label>
     <input type="number" asp-for="MinDepth" min="0" step="0.01">
 
     <label asp-for="MaxDepth">Maximum depth:</label>
     <input type="number" asp-for="MaxDepth" min="0" step="0.01">
-    <h5>Choose Adult/Child</h5>
+
+    <h5>Choose Age</h5>
     <input type="checkbox" asp-for="Adult" />
-    <label asp-for="Adult">Adult</label>
+    <label asp-for="Adult">Adult (15+)</label>
     <br />
     <input type="checkbox" asp-for="Child" />
-    <label asp-for="Child">Child</label>
+    <label asp-for="Child">Child (3-15)</label>
+    <br />
+    <input type="checkbox" asp-for="Infant" />
+    <label asp-for="Infant">Infant (1-3)</label>
+    <br />
+    <input type="checkbox" asp-for="Newborn" />
+    <label asp-for="Newborn">Newborn (0-1)</label>
+
     <h5>Choose Hair Color</h5>
     <input type="checkbox" asp-for="Brown" />
     <label asp-for="Brown">Brown</label>
@@ -47,6 +57,7 @@
     <input type="checkbox" asp-for="Unknown" />
     <label asp-for="Unknown">Unknown</label>
     <br />
+
     <h5>Choose Wrapping Type</h5>
     <input type="checkbox" asp-for="Full" />
     <label asp-for="Full">Full Wrapping</label>
