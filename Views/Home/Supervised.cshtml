@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Mummy Head Direction Predictor";
 }
+@model ErrorViewModel
 
 <h1>@ViewData["Title"]</h1>
 
@@ -25,6 +26,14 @@
 </div>
 <br />
 <p>Predict the head direction of your mummy below!</p>
+
+@if (Model.ErrorMessage != null)
+{
+    <div id="errorMessage">
+        <h2>Error: @Model.ErrorMessage</h2>
+    </div>
+
+}
 
 <form method="post" id="MakePrediction">
     <label for="depth"> Depth:</label>
@@ -70,3 +79,13 @@
 
     <button type="submit"> Generate Prediction </button>
 </form>
+
+
+@if(Model.ErrorMessage != null)
+{
+    <script>
+        let msg = @Model.ErrorMessage
+        alert("Error: " + msg);
+    </script>
+
+}
