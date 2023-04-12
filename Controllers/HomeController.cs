@@ -7,13 +7,6 @@ namespace IntexFagElGamous.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly ILogger<HomeController> _logger;
-
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
-
         private intexmummyContext IntexContext { get; set; }
 
         public HomeController(intexmummyContext intexContext)
@@ -30,6 +23,8 @@ namespace IntexFagElGamous.Controllers
         public IActionResult Burials(int pageNum = 1)
         {
             int pageSize = 20;
+
+            ViewBag.Changes = new FilterViewModel();
 
             var x = new BurialViewModel
             {
@@ -55,22 +50,35 @@ namespace IntexFagElGamous.Controllers
 
             IQueryable<Burialmain> filteredBurials = IntexContext.Burialmains;
 
-            if (filter.Male == "M")
+            if (filter.Male)
             {
-                filteredBurials = filteredBurials.Where(x => x.Sex == "M");
+                if (filter.Female)
+                {
+                    filteredBurials = filteredBurials.Where(x => x.Sex == "F" || x.Sex == "M");
+                }
+                else
+                {
+                    filteredBurials = filteredBurials.Where(x => x.Sex == "M");
+                }
+                
             }
-
-            if (filter.Female == "F")
+            else if (filter.Female)
             {
                 filteredBurials = filteredBurials.Where(x => x.Sex == "F");
             }
 
-            if (filter.West == "W")
+            if (filter.West)
             {
-                filteredBurials = filteredBurials.Where(x => x.Headdirection == "W");
+                if (filter.East)
+                {
+                    filteredBurials = filteredBurials.Where(x => x.Headdirection == "E" || x.Headdirection == "W");
+                }
+                else
+                {
+                    filteredBurials = filteredBurials.Where(x => x.Headdirection == "W");
+                }
             }
-
-            if (filter.East == "E")
+            else if (filter.East)
             {
                 filteredBurials = filteredBurials.Where(x => x.Headdirection == "E");
             }
@@ -85,47 +93,56 @@ namespace IntexFagElGamous.Controllers
             //    filteredBurials = filteredBurials.Where(x => int.Parse(x.Depth) <= int.Parse(filter.MaxDepth));
             //}
 
-            if (filter.Adult == "A")
+            if (filter.Adult)
             {
-                filteredBurials = filteredBurials.Where(x => x.Adultsubadult == "A");
+                if (filter.Child)
+                {
+                    filteredBurials = filteredBurials.Where(x => x.Adultsubadult == "C" || x.Adultsubadult == "A");
+                }
+                else
+                {
+                    filteredBurials = filteredBurials.Where(x => x.Adultsubadult == "A");
+                }
             }
-
-            if (filter.Child == "C")
+            else if (filter.Child)
             {
                 filteredBurials = filteredBurials.Where(x => x.Adultsubadult == "C");
             }
 
-            if (filter.Brown == "B")
+            // ADD THIS FUNCTIONALITY LATER! FIND A WAY THAT DOES NOT INCLUDE 100000 NESTED IF STATEMENTS
+            if (filter.Brown)
             {
                 filteredBurials = filteredBurials.Where(x => x.Haircolor == "B");
             }
 
-            if (filter.Black == "K")
+            if (filter.Black)
             {
                 filteredBurials = filteredBurials.Where(x => x.Haircolor == "K");
             }
 
-            if (filter.BrownRed == "A")
+            if (filter.BrownRed)
             {
                 filteredBurials = filteredBurials.Where(x => x.Haircolor == "A");
             }
 
-            if (filter.Red == "R")
+            if (filter.Red)
             {
                 filteredBurials = filteredBurials.Where(x => x.Haircolor == "R");
             }
 
-            if (filter.Blond == "D")
+            if (filter.Blond)
             {
                 filteredBurials = filteredBurials.Where(x => x.Haircolor == "D");
             }
 
-            if (filter.Unknown == "U")
+            if (filter.Unknown)
             {
                 filteredBurials = filteredBurials.Where(x => x.Haircolor == "U");
             }
 
             List<Burialmain> results = filteredBurials.ToList();
+
+            ViewBag.Changes = filter;
 
             var pageSize = 20;
             var x = new BurialViewModel

@@ -4,52 +4,7 @@
 @model BurialViewModel
 <div class="row m-1 p-1">
 <div class="col-3">
-    <form method="post" id="filter">
-        <h5>Choose Sex</h5>
-            <input type="checkbox" id="Male" name="Male" value="M"/>
-            <label>Male</label>
-            <br />
-            <input type="checkbox" id="Female" name="Female" value="F" />
-            <label>Female</label>
-        <h5>Choose Head Direction</h5>
-            <input type="checkbox" id="West" name="West" value="W" />
-            <label>West</label>
-            <br />
-            <input type="checkbox" id="East" name="East" value="E" />
-            <label>East</label>
-@*        <h5>Enter Burial Depth Range</h5>
-            <label for="MinDepth">Minimum depth:</label>
-            <input type="number" id="MinDepth" name="MinDepth" min="0" step="0.01">
-
-            <label for="MaxDepth">Maximum depth:</label>
-            <input type="number" id="MaxDepth" name="MaxDepth" min="0" step="0.01">*@
-        <h5>Choose Adult/Child</h5>
-            <input type="checkbox" id="Adult" name="Adult" value="A" />
-            <label>Adult</label>
-            <br />
-            <input type="checkbox" id="Child" name="Child" value="C" />
-            <label>Child</label>
-        <h5>Choose Hair Color</h5>
-            <input type="checkbox" id="Brown" name="Brown" value="B" />
-            <label>Brown</label>
-            <br />
-            <input type="checkbox" id="Black" name="Black" value="K" />
-            <label>Black</label>
-            <br />
-            <input type="checkbox" id="brownred" name="brownred" value="A" />
-            <label>Brown/Red</label>
-            <br />
-            <input type="checkbox" id="red" name="red" value="R" />
-            <label>Red</label>
-            <br />
-            <input type="checkbox" id="blond" name="blond" value="D" />
-            <label>Blond</label>
-            <br />
-            <input type="checkbox" id="unknown" name="unknown" value="U" />
-            <label>Unknown</label>
-        <br /><br /><br />
-        <button type="submit" class="btn btn-primary">Search</button>
-    </form>
+    <partial name="Filter" model="Model.Filters"/>
 </div>
 <div class="col-9">
     <div class="text-center">
