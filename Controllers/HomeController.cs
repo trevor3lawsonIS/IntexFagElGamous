@@ -2,6 +2,7 @@
 using IntexFagElGamous.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace IntexFagElGamous.Controllers
@@ -88,15 +89,15 @@ namespace IntexFagElGamous.Controllers
                 filteredBurials = filteredBurials.Where(x => x.Headdirection == "E");
             }
 
-            //if (filter.MinDepth != null)
-            //{
-            //    filteredBurials = filteredBurials.Where(x => int.Parse(x.Depth) >= int.Parse(filter.MinDepth));
-            //}
+            if (filter.MinDepth != null)
+            {
+                filteredBurials = filteredBurials.Where(x => Convert.ToDecimal(x.Depth) >= filter.MinDepth);
+            }
 
-            //if (filter.MaxDepth != null)
-            //{
-            //    filteredBurials = filteredBurials.Where(x => int.Parse(x.Depth) <= int.Parse(filter.MaxDepth));
-            //}
+            if (filter.MaxDepth != null)
+            {
+                filteredBurials = filteredBurials.Where(x => Convert.ToDecimal(x.Depth) <= filter.MaxDepth);
+            }
 
             if (filter.Adult)
             {
@@ -114,35 +115,62 @@ namespace IntexFagElGamous.Controllers
                 filteredBurials = filteredBurials.Where(x => x.Adultsubadult == "C");
             }
 
-            // ADD THIS FUNCTIONALITY LATER! FIND A WAY THAT DOES NOT INCLUDE 100000 NESTED IF STATEMENTS
+            var hairColors = new List<string>();
+
             if (filter.Brown)
             {
-                filteredBurials = filteredBurials.Where(x => x.Haircolor == "B");
+                hairColors.Add("B");
             }
 
             if (filter.Black)
             {
-                filteredBurials = filteredBurials.Where(x => x.Haircolor == "K");
+                hairColors.Add("K");
             }
 
             if (filter.BrownRed)
             {
-                filteredBurials = filteredBurials.Where(x => x.Haircolor == "A");
+                hairColors.Add("A");
             }
 
             if (filter.Red)
             {
-                filteredBurials = filteredBurials.Where(x => x.Haircolor == "R");
+                hairColors.Add("R");
             }
 
             if (filter.Blond)
             {
-                filteredBurials = filteredBurials.Where(x => x.Haircolor == "D");
+                hairColors.Add("D");
             }
 
             if (filter.Unknown)
             {
-                filteredBurials = filteredBurials.Where(x => x.Haircolor == "U");
+                hairColors.Add("U");
+            }
+
+            if (hairColors.Count > 0)
+            {
+                filteredBurials = filteredBurials.Where(x => hairColors.Contains(x.Haircolor));
+            }
+
+            var wrapping = new List<string>();
+
+            if (filter.Full)
+            {
+                wrapping.Add("W");
+            }
+
+            if (filter.Partial)
+            {
+                wrapping.Add("H");
+            }
+
+            if (filter.Bones)
+            {
+                wrapping.Add("B");
+            }
+            if (wrapping.Count > 0)
+            {
+                filteredBurials = filteredBurials.Where(x => wrapping.Contains(x.Wrapping));
             }
 
             List<Burialmain> results = filteredBurials.ToList();
