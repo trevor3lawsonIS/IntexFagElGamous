@@ -4,11 +4,12 @@
 @model BurialViewModel
 <div class="row m-1 p-1">
 <div class="col-3">
-    <partial name="Filter" model="Model.Filters"/>
+        <img src="~/img/2002-0085.jpg" height="150" width="200"/>
+        <partial name="Filter" model="Model.Filters" />
 </div>
 <div class="col-9">
     <div class="text-center">
-        <h1 class="display-4 text-monospace text-primary">Welcome</h1>
+        <h1>Welcome</h1>
     </div>
     @foreach (Burialmain b in Model.Burialmains)
     {

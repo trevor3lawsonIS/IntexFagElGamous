@@ -117,8 +117,9 @@
 }
 
 .col-3 {
-  flex: 0 0 auto;
-  width: 25%;
+    flex: 0 0 auto;
+    width: 25%;
+    background-color: tan;
 }
 
 .col-4 {
@@ -149,6 +150,7 @@
 .col-9 {
   flex: 0 0 auto;
   width: 75%;
+  background-color: tan;
 }
 
 .col-10 {
