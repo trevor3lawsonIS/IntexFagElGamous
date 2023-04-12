@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Prediction Result";
+}
+@model PredictionResult
+<!-- Use the result of the API call in your view -->
+<h1>@ViewData["Title"]</h1>
+
+
+<p>
+    Your mummy's head direction is predicted to be facing
+    <span>@Model.Result</span>.
+</p>
+
+<div>
+    @if (@Model.Result == "East")
+    {
+        <p>
+            Here are some things this could mean:
+            <ul>
+                <li>Your mummy is Christian or Muslim, facing towards Jerusalem or Mecca.</li>
+                <li>Your mummy is facing towards the rising of the sun.</li>
+                <li>Your mummy is facing towards the land of the living.</li>
+            </ul>
+        </p>
+    }
+    else
+    {
+        <p>
+            Here are some things this could mean:
+            <ul>
+                <li>Your mummy is likely of Ancient Egyptian religion.</li>
+                <li>Your mummy is facing towards the setting of the sun.</li>
+                <li>Your mummy is facing towards the land of the dead.</li>
+            </ul>
+        </p>
+    }
+</div>

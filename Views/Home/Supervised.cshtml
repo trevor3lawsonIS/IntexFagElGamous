@@ -1,5 +1,72 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Mummy Head Direction Predictor";
 }
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <p>
+        The mummies discovered by the BYU Egypt Archeology team have their heads oriented either East or West, with different implications
+        based on ancient Egyptian history.
+    </p>
+    <p>
+        One explanation is that East-facing mummies were aligned towards the rising sun,
+        while West-facing mummies were associated with the realm of the dead. The sun's daily cycle of rising and setting was
+        considered a symbol of death and rebirth in Ancient Egyptian religion.
+    </p>
+    <p>
+        Another possibility is that some mummies facing East
+        may be of Christian or Muslim origin, aligned towards Mecca or Jerusalem.
+    </p>
+    <p>
+        Regardless of the reason, the orientation of the
+        mummies' heads provides valuable insight into the religious and cultural practices of ancient Egypt.
+    </p>
+</div>
+<br />
+<p>Predict the head direction of your mummy below!</p>
+
+<form method="post" id="MakePrediction">
+    <label for="depth"> Depth:</label>
+    <input type="text" name="depth" id="depth" class="form-control" required>
+    <br />
+
+    <label for="sex"> Sex:</label>
+    <select name="sex" id="sex" class="form-control" required>
+        <option value="">-- Select a gender --</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <!-- add more options here as needed -->
+    </select>
+    <br />
+
+    <label for="adultchild"> Adult or Child:</label>
+    <select name="adultchild" id="adultchild" class="form-control" required>
+        <option value="">-- Select an age --</option>
+        <option value="adult">Adult</option>
+        <option value="child">Child</option>
+        <!-- add more options here as needed -->
+    </select>
+    <br />
+
+    <label for="goods"> Buried with Goods:</label>
+    <select name="goods" id="goods" class="form-control" required>
+        <option value="">-- Select an option --</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+        <!-- add more options here as needed -->
+    </select>
+    <br />
+
+    <label for="wrapping"> Wrapping type:</label>
+    <select name="wrapping" id="wrapping" class="form-control" required>
+        <option value="">-- Select a wrapping type --</option>
+        <option value="bones">Bones Only (No wrapping)</option>
+        <option value="half">Half</option>
+        <option value="whole">Whole</option>
+        <!-- add more options here as needed -->
+    </select>
+    <br />
+
+    <button type="submit"> Generate Prediction </button>
+</form>
