@@ -62,10 +62,11 @@ app.UseAuthorization();
 
 app.Use(async (context, next) =>
 {
-    context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src " +
-        "'self'; frame-src 'self'");
+    context.Response.Headers.Add("Content-Security-Policy", "default-src 'self' wss://localhost:44330/IntexFagElGamous/; script-src 'self' https://ajax.googleapis.com 'unsafe-inline'; style-src 'self' https://ajax.googleapis.com; font-src 'self'; img-src " +
+        "'self'; frame-src 'self'; cookie-scope 'host'");
     await next();
 });
+
 
 app.MapControllerRoute(
     name: "default",
