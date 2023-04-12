@@ -232,7 +232,7 @@ namespace IntexFagElGamous.Controllers
         }
 
         [HttpGet]
-        public IActionResult CRUDdelete(int id)
+        public IActionResult CRUDdelete(long id)
         {
             var burial = IntexContext.Burialmains.Single(x => x.Id == id);
             return View(burial);
@@ -246,7 +246,7 @@ namespace IntexFagElGamous.Controllers
         }
 
         [HttpGet]
-        public IActionResult CRUDedit(int id)
+        public IActionResult CRUDedit(long id)
         {
             var burial = IntexContext.Burialmains.Single(x => x.Id == id);
             return View("CRUDadd", burial);
@@ -256,7 +256,7 @@ namespace IntexFagElGamous.Controllers
         {
             IntexContext.Update(burial);
             IntexContext.SaveChanges();
-            return RedirectToAction("Burials");
+            return RedirectToAction("Summary", burial);
         }
 
         public IActionResult Privacy()
