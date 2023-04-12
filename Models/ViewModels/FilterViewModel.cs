@@ -10,6 +10,8 @@
         public decimal? MaxDepth { get; set; }
         public bool Adult { get; set; }
         public bool Child { get; set; }
+        public bool Infant { get; set; }
+        public bool Newborn { get; set; }
         public bool Brown { get; set; }
         public bool Black { get; set; }
         public bool BrownRed { get; set; }

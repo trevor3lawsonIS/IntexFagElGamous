@@ -99,20 +99,27 @@ namespace IntexFagElGamous.Controllers
                 filteredBurials = filteredBurials.Where(x => Convert.ToDecimal(x.Depth) <= filter.MaxDepth);
             }
 
+            var age = new List<string>();
+
             if (filter.Adult)
             {
-                if (filter.Child)
-                {
-                    filteredBurials = filteredBurials.Where(x => x.Adultsubadult == "C" || x.Adultsubadult == "A");
-                }
-                else
-                {
-                    filteredBurials = filteredBurials.Where(x => x.Adultsubadult == "A");
-                }
+                age.Add("A");
             }
-            else if (filter.Child)
+            if (filter.Child)
             {
-                filteredBurials = filteredBurials.Where(x => x.Adultsubadult == "C");
+                age.Add("C");
+            }
+            if (filter.Infant)
+            {
+                age.Add("I");
+            }
+            if (filter.Newborn)
+            {
+                age.Add("N");
+            }
+            if (age.Count > 0)
+            {
+                filteredBurials = filteredBurials.Where(x => age.Contains(x.Ageatdeath));
             }
 
             var hairColors = new List<string>();
