@@ -239,21 +239,21 @@ namespace IntexFagElGamous.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel { ErrorMessage = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
 
         [HttpGet]
-        public ActionResult Supervised()
+        public ActionResult Supervised(ErrorViewModel error)
         {
-            return View();
+            return View(error);
         }
 
         [HttpPost]
         public async Task<IActionResult> Supervised(float depth, string sex, string adultchild, string goods, string wrapping)
         {
             // Set the API endpoint URL
-            string apiUrl = "http://52.70.13.136/predict";
+            string apiUrl = "http://3.140.174.250/predict";
 
             int adultsubadult_C;
             int goods_Other;
@@ -305,28 +305,43 @@ namespace IntexFagElGamous.Controllers
             // Set the content type and the input data in the request body
             StringContent content = new StringContent(inputDataJson, System.Text.Encoding.UTF8, "application/json");
 
-            // Send the POST request to the API endpoint and wait for the response
-            HttpResponseMessage response = await _httpClient.PostAsync(apiUrl, content);
-            string responseContent = await response.Content.ReadAsStringAsync();
+            Task<HttpResponseMessage> task = _httpClient.PostAsync(apiUrl, content);
+            Task completedTask = await Task.WhenAny(task, Task.Delay(TimeSpan.FromSeconds(5)));
 
-            // Check if the request was successful (status code 200)
-            if (response.IsSuccessStatusCode)
+            if (completedTask == task)
             {
-                // Deserialize the JSON response into a result object
-                ModelResult ResultFromApi = JsonConvert.DeserializeObject<ModelResult>(responseContent);
 
-                // Pass the prediction result to the view and render it
+                // Send the POST request to the API endpoint and wait for the response
+                HttpResponseMessage response = await _httpClient.PostAsync(apiUrl, content);
+                string responseContent = await response.Content.ReadAsStringAsync();
 
-                //TempData["Result"] = Result;
+                // Check if the request was successful (status code 200)
+                if (response.IsSuccessStatusCode)
+                {
+                    // Deserialize the JSON response into a result object
+                    ModelResult ResultFromApi = JsonConvert.DeserializeObject<ModelResult>(responseContent);
 
-                return RedirectToAction("MyResult", ResultFromApi);
+                    // Pass the prediction result to the view and render it
 
+                    //TempData["Result"] = Result;
+
+                    return RedirectToAction("MyResult", ResultFromApi);
+
+                }
+                else
+                {
+                    // Pass the error message to the view and render it
+                    ErrorViewModel errorMessage = new ErrorViewModel { ErrorMessage= $"Prediction API error ({response.StatusCode}): {responseContent}" } ;
+                    return RedirectToAction("Supervised", errorMessage);
+                }
             }
             else
             {
-                // Pass the error message to the view and render it
-                string errorMessage = $"Prediction API error ({response.StatusCode}): {responseContent}";
-                return View("PredictionError", errorMessage);
+                // The API call took more than 5 seconds
+                ErrorViewModel errorMessage = new ErrorViewModel { ErrorMessage = "An error occurred while making a mummy head direction prediction." };
+                return RedirectToAction("Supervised", errorMessage);
+                //return RedirectToAction("Index");
+
             }
         }
 
