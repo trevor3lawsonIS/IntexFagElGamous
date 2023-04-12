@@ -212,6 +212,21 @@ namespace IntexFagElGamous.Controllers
             IntexContext.SaveChanges();
             return RedirectToAction("Burials");
         }
+
+        [HttpGet]
+        public IActionResult CRUDedit(int id)
+        {
+            var burial = IntexContext.Burialmains.Single(x => x.Id == id);
+            return View("CRUDadd", burial);
+        }
+        [HttpPost]
+        public IActionResult CRUDedit(Burialmain burial)
+        {
+            IntexContext.Update(burial);
+            IntexContext.SaveChanges();
+            return RedirectToAction("Burials");
+        }
+
         public IActionResult Privacy()
         {
             return View();
