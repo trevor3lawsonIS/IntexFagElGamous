@@ -47,6 +47,7 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Home/Error");
+        app.UseForwardedHeaders();
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
@@ -63,7 +64,7 @@ app.UseAuthorization();
 app.Use(async (context, next) =>
 {
     context.Response.Headers.Add("Content-Security-Policy", "default-src 'self' wss://localhost:44330/IntexFagElGamous/; script-src 'self' https://ajax.googleapis.com 'unsafe-inline'; style-src 'self' https://ajax.googleapis.com; font-src 'self'; img-src " +
-        "'self'; frame-src 'self'; cookie-scope 'host'");
+        "'self' data: https:; frame-src 'self'; cookie-scope 'host'");
     await next();
 });
 
