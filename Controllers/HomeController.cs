@@ -76,9 +76,9 @@ namespace IntexFagElGamous.Controllers
                 filteredBurials = filteredBurials.Where(x => x.Sex == "F");
             }
 
-            if (filter.West)
+            if (filter.HeadWest)
             {
-                if (filter.East)
+                if (filter.HeadEast)
                 {
                     filteredBurials = filteredBurials.Where(x => x.Headdirection == "E" || x.Headdirection == "W");
                 }
@@ -87,7 +87,7 @@ namespace IntexFagElGamous.Controllers
                     filteredBurials = filteredBurials.Where(x => x.Headdirection == "W");
                 }
             }
-            else if (filter.East)
+            else if (filter.HeadEast)
             {
                 filteredBurials = filteredBurials.Where(x => x.Headdirection == "E");
             }
@@ -162,32 +162,28 @@ namespace IntexFagElGamous.Controllers
                 filteredBurials = filteredBurials.Where(x => hairColors.Contains(x.Haircolor));
             }
 
-            var wrapping = new List<string>();
+            var wrappingList = new List<string>();
 
             if (filter.Full)
             {
-                wrapping.Add("W");
+                wrappingList.Add("W");
             }
 
             if (filter.Partial)
             {
-                wrapping.Add("H");
+                wrappingList.Add("H");
             }
 
             if (filter.Bones)
             {
-                wrapping.Add("B");
+                wrappingList.Add("B");
             }
-            if (wrapping.Count > 0)
+            if (wrappingList.Count > 0)
             {
-                filteredBurials = filteredBurials.Where(x => wrapping.Contains(x.Wrapping));
+                filteredBurials = filteredBurials.Where(x => wrappingList.Contains(x.Wrapping));
             }
 
-            //List<Burialmain> resultsBurials = filteredBurials.ToList();
-
-            var colorNames = new List<string>();
-
-            if (filter.ColorGreen)
+            if (filter.TextileColor == "Green")
             {
                 var colors = IntexContext.Burialmains
                     .FromSqlRaw("select b.* from Burialmain b " +
@@ -200,7 +196,7 @@ namespace IntexFagElGamous.Controllers
                     .ToList();
                 filteredBurials = filteredBurials.Where(x => colors.Contains(x));
             }
-            if (filter.ColorBlack)
+            if (filter.TextileColor == "Black")
             {
                 var colors = IntexContext.Burialmains
                     .FromSqlRaw("select b.* from Burialmain b " +
@@ -213,7 +209,7 @@ namespace IntexFagElGamous.Controllers
                     .ToList();
                 filteredBurials = filteredBurials.Where(x => colors.Contains(x));
             }
-            if (filter.ColorBlue)
+            if (filter.TextileColor == "Blue")
             {
                 var colors = IntexContext.Burialmains
                     .FromSqlRaw("select b.* from Burialmain b " +
@@ -226,7 +222,7 @@ namespace IntexFagElGamous.Controllers
                     .ToList();
                 filteredBurials = filteredBurials.Where(x => colors.Contains(x));
             }
-            if (filter.ColorBrown)
+            if (filter.TextileColor == "Brown")
             {
                 var colors = IntexContext.Burialmains
                     .FromSqlRaw("select b.* from Burialmain b " +
@@ -239,7 +235,7 @@ namespace IntexFagElGamous.Controllers
                     .ToList();
                 filteredBurials = filteredBurials.Where(x => colors.Contains(x));
             }
-            if (filter.ColorYellow)
+            if (filter.TextileColor == "Yellow")
             {
                 var colors = IntexContext.Burialmains
                     .FromSqlRaw("select b.* from Burialmain b " +
@@ -252,7 +248,7 @@ namespace IntexFagElGamous.Controllers
                     .ToList();
                 filteredBurials = filteredBurials.Where(x => colors.Contains(x));
             }
-            if (filter.ColorOrange)
+            if (filter.TextileColor == "Orange")
             {
                 var colors = IntexContext.Burialmains
                     .FromSqlRaw("select b.* from Burialmain b " +
@@ -265,7 +261,7 @@ namespace IntexFagElGamous.Controllers
                     .ToList();
                 filteredBurials = filteredBurials.Where(x => colors.Contains(x));
             }
-            if (filter.ColorPurple)
+            if (filter.TextileColor == "Purple")
             {
                 var colors = IntexContext.Burialmains
                     .FromSqlRaw("select b.* from Burialmain b " +
@@ -278,7 +274,7 @@ namespace IntexFagElGamous.Controllers
                     .ToList();
                 filteredBurials = filteredBurials.Where(x => colors.Contains(x));
             }
-            if (filter.ColorRed)
+            if (filter.TextileColor == "Red")
             {
                 var colors = IntexContext.Burialmains
                     .FromSqlRaw("select b.* from Burialmain b " +
@@ -291,7 +287,7 @@ namespace IntexFagElGamous.Controllers
                     .ToList();
                 filteredBurials = filteredBurials.Where(x => colors.Contains(x));
             }
-            if (filter.ColorUndyed)
+            if (filter.TextileColor == "Undyed")
             {
                 var colors = IntexContext.Burialmains
                     .FromSqlRaw("select b.* from Burialmain b " +
@@ -304,7 +300,7 @@ namespace IntexFagElGamous.Controllers
                     .ToList();
                 filteredBurials = filteredBurials.Where(x => colors.Contains(x));
             }
-            if (filter.ColorWhite)
+            if (filter.TextileColor == "White")
             {
                 var colors = IntexContext.Burialmains
                     .FromSqlRaw("select b.* from Burialmain b " +
@@ -317,7 +313,85 @@ namespace IntexFagElGamous.Controllers
                     .ToList();
                 filteredBurials = filteredBurials.Where(x => colors.Contains(x));
             }
-            
+
+            if (filter.East)
+            {
+                if (filter.West)
+                {
+                    filteredBurials = filteredBurials.Where(x => x.Eastwest == "E" || x.Eastwest == "W");
+                }
+                else
+                {
+                    filteredBurials = filteredBurials.Where(x => x.Eastwest == "E");
+                }
+
+            }
+            else if (filter.West)
+            {
+                filteredBurials = filteredBurials.Where(x => x.Eastwest == "W");
+            }
+
+            if (filter.North)
+            {
+                if (filter.South)
+                {
+                    filteredBurials = filteredBurials.Where(x => x.Northsouth == "N" || x.Northsouth == "S");
+                }
+                else
+                {
+                    filteredBurials = filteredBurials.Where(x => x.Northsouth == "N");
+                }
+
+            }
+            else if (filter.South)
+            {
+                filteredBurials = filteredBurials.Where(x => x.Northsouth == "S");
+            }
+
+            if (filter.SquareEastWest != null)
+            {
+                filteredBurials = filteredBurials.Where(x => Convert.ToDecimal(x.Squareeastwest) == filter.SquareEastWest);
+            }
+
+            if (filter.SquareNorthSouth != null)
+            {
+                filteredBurials = filteredBurials.Where(x => Convert.ToDecimal(x.Squarenorthsouth) == filter.SquareNorthSouth);
+            }
+
+            var area = new List<string>();
+
+            if (filter.SouthWestArea)
+            {
+                area.Add("SW");
+            }
+
+            if (filter.SouthEastArea)
+            {
+                area.Add("SE");
+            }
+
+            if (filter.NorthEastArea)
+            {
+                area.Add("NE");
+            }
+            if (filter.NorthWestArea)
+            {
+                area.Add("NW");
+            }
+            if (area.Count > 0)
+            {
+                filteredBurials = filteredBurials.Where(x => area.Contains(x.Area));
+            }
+
+            if (filter.BurialNumber != null)
+            {
+                filteredBurials = filteredBurials.Where(x => Convert.ToDecimal(x.Burialnumber) == filter.BurialNumber);
+            }
+
+
+
+
+
             List<Burialmain> resultsBurials = filteredBurials.ToList();
 
             ViewBag.Changes = filter;

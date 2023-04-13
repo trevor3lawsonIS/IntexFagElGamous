@@ -12,11 +12,11 @@
     <label asp-for="Female">Female</label>
 
     <h5>Choose Head Direction</h5>
-    <input type="checkbox" asp-for="West" />
-    <label asp-for="West">West</label>
+    <input type="checkbox" asp-for="HeadWest" />
+    <label asp-for="HeadWest">West</label>
     <br />
-    <input type="checkbox" asp-for="East" />
-    <label asp-for="East">East</label>
+    <input type="checkbox" asp-for="HeadEast" />
+    <label asp-for="HeadEast">East</label>
 
             <h5>Enter Burial Depth Range</h5>
     <label asp-for="MinDepth">Minimum depth:</label>
@@ -69,36 +69,49 @@
     <label asp-for="Bones">Only Bones or Limited Wrapping</label><br />
 
     <h5>Choose Textile Color</h5>
-    <input type="checkbox" asp-for="ColorYellow" />
-    <label asp-for="ColorYellow">Yellow</label>
+    <select asp-for="TextileColor">
+        <option value="">Choose Color</option>
+        <option value="Yellow">Yellow</option>
+        <option value="Purple">Purple</option>
+        <option value="Red">Red</option>
+        <option value="Brown">Brown</option>
+        <option value="Green">Green</option>
+        <option value="White">White</option>
+        <option value="Blue">Blue</option>
+        <option value="Black">Black</option>
+        <option value="Orange">Orange</option>
+        <option value="Undyed">Undyed</option>
+    </select><br />
     <br />
-    <input type="checkbox" asp-for="ColorPurple" />
-    <label asp-for="ColorPurple">Purple</label>
+
+    <h5>Choose Location</h5>
+    <input type="checkbox" asp-for="North" />
+    <label asp-for="North">North</label>
+    <input type="checkbox" asp-for="South" />
+    <label asp-for="South">South</label>
     <br />
-    <input type="checkbox" asp-for="ColorRed" />
-    <label asp-for="ColorRed">Red</label>
+    <input type="checkbox" asp-for="East" />
+    <label asp-for="East">East</label>
+    <input type="checkbox" asp-for="West" />
+    <label asp-for="West">West</label>
     <br />
-    <input type="checkbox" asp-for="ColorBrown" />
-    <label asp-for="ColorBrown">Brown</label>
+    <label asp-for="SquareNorthSouth">SquareNorthSouth:</label>
+    <input type="number" asp-for="SquareNorthSouth" min="0" step="0.01">
+    <label asp-for="SquareEastWest">SquareEastWest:</label>
+    <input type="number" asp-for="SquareEastWest" min="0" step="0.01">
     <br />
-    <input type="checkbox" asp-for="ColorGreen" />
-    <label asp-for="ColorGreen">Green</label>
+    <input type="checkbox" asp-for="NorthEastArea" />
+    <label asp-for="NorthEastArea">NorthEast Area</label><br />
+    <input type="checkbox" asp-for="NorthWestArea" />
+    <label asp-for="NorthWestArea">NorthWest Area</label><br />
+    <input type="checkbox" asp-for="SouthEastArea" />
+    <label asp-for="SouthEastArea">SouthEast Area</label><br />
+    <input type="checkbox" asp-for="SouthWestArea" />
+    <label asp-for="SouthWestArea">SouthWest Area</label>
     <br />
-    <input type="checkbox" asp-for="ColorWhite" />
-    <label asp-for="ColorWhite">White</label>
-    <br />
-    <input type="checkbox" asp-for="ColorBlue" />
-    <label asp-for="ColorBlue">Blue</label>
-    <br />
-    <input type="checkbox" asp-for="ColorBlack" />
-    <label asp-for="ColorBlack">Black</label>
-    <br />
-    <input type="checkbox" asp-for="ColorOrange" />
-    <label asp-for="ColorOrange">Orange</label>
-    <br />
-    <input type="checkbox" asp-for="ColorUndyed" />
-    <label asp-for="ColorUndyed">Undyed</label>
-    <br />
+    <label asp-for="BurialNumber">Burial Number:</label>
+    <input type="number" asp-for="BurialNumber" min="0" step="0.01">
+
 
 
 
