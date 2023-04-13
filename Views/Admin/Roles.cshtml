@@ -23,9 +23,9 @@
             <tr>
                 <td>@role.Name</td>
                 <td>
-                    <a asp-controller="Admin" asp-action="DeleteRole" asp-route-id="@role.Id" class="btn"><img src="https://drive.google.com/uc?export=view&id=1K032fPehmOZbf95TV9Hv4OHE-_JeRolN" />Delete</a>
-                    <a asp-controller="Admin" asp-action="AddUserToRole" asp-route-id="@role.Id" class="btn"><img src="~/img/icons8-edit.svg" />Add User To Role</a>
-                    <a asp-controller="Admin" asp-action="RemoveUserFromRole" asp-route-id="@role.Id" class="btn"><img src="~/img/icons8-edit.svg" />Remove User From Role</a>
+                    <a asp-controller="Admin" asp-action="DeleteRole" asp-route-roleId="@role.Id" class="btn"><img src="https://drive.google.com/uc?export=view&id=1K032fPehmOZbf95TV9Hv4OHE-_JeRolN" />Delete</a>
+                    <a asp-controller="Admin" asp-action="AddUserToRole" asp-route-roleId="@role.Id" class="btn"><img src="~/img/icons8-edit.svg" />Add User To Role</a>
+                    <a asp-controller="Admin" asp-action="RemoveUserFromRole" asp-route-roleId="@role.Id" class="btn"><img src="~/img/icons8-edit.svg" />Remove User From Role</a>
 
                 </td>
             </tr>

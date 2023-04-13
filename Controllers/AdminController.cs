@@ -18,10 +18,10 @@ namespace IntexFagElGamous.Controllers
             _userManager = userManager;
             _roleManager = roleManager;
         }
-
+        
 
         //DELETING
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> DeleteUser(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -39,7 +39,7 @@ namespace IntexFagElGamous.Controllers
             return RedirectToAction("Index", "Home");
         }
        
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> DeleteRole(string roleId)
         {
             var role = await _roleManager.FindByIdAsync(roleId);
@@ -54,7 +54,7 @@ namespace IntexFagElGamous.Controllers
                 return BadRequest(result.Errors);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Roles");
         }
 
         //EDITING USER ROLES
