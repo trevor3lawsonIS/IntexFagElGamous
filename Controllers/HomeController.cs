@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;
 using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace IntexFagElGamous.Controllers
 {
@@ -55,6 +56,8 @@ namespace IntexFagElGamous.Controllers
         {
 
             IQueryable<Burialmain> filteredBurials = IntexContext.Burialmains;
+            IQueryable<Textile> filteredTextiles = IntexContext.Textiles;
+            IQueryable<Color> filteredColors = IntexContext.Colors;
 
             if (filter.Male)
             {
@@ -73,9 +76,9 @@ namespace IntexFagElGamous.Controllers
                 filteredBurials = filteredBurials.Where(x => x.Sex == "F");
             }
 
-            if (filter.West)
+            if (filter.HeadWest)
             {
-                if (filter.East)
+                if (filter.HeadEast)
                 {
                     filteredBurials = filteredBurials.Where(x => x.Headdirection == "E" || x.Headdirection == "W");
                 }
@@ -84,7 +87,7 @@ namespace IntexFagElGamous.Controllers
                     filteredBurials = filteredBurials.Where(x => x.Headdirection == "W");
                 }
             }
-            else if (filter.East)
+            else if (filter.HeadEast)
             {
                 filteredBurials = filteredBurials.Where(x => x.Headdirection == "E");
             }
@@ -159,28 +162,237 @@ namespace IntexFagElGamous.Controllers
                 filteredBurials = filteredBurials.Where(x => hairColors.Contains(x.Haircolor));
             }
 
-            var wrapping = new List<string>();
+            var wrappingList = new List<string>();
 
             if (filter.Full)
             {
-                wrapping.Add("W");
+                wrappingList.Add("W");
             }
 
             if (filter.Partial)
             {
-                wrapping.Add("H");
+                wrappingList.Add("H");
             }
 
             if (filter.Bones)
             {
-                wrapping.Add("B");
+                wrappingList.Add("B");
             }
-            if (wrapping.Count > 0)
+            if (wrappingList.Count > 0)
             {
-                filteredBurials = filteredBurials.Where(x => wrapping.Contains(x.Wrapping));
+                filteredBurials = filteredBurials.Where(x => wrappingList.Contains(x.Wrapping));
             }
 
-            List<Burialmain> results = filteredBurials.ToList();
+            if (filter.TextileColor == "Green")
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Green%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.TextileColor == "Black")
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Black%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.TextileColor == "Blue")
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Blue%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.TextileColor == "Brown")
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Brown%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.TextileColor == "Yellow")
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Yellow%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.TextileColor == "Orange")
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Oranged%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.TextileColor == "Purple")
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Purple%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.TextileColor == "Red")
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Red%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.TextileColor == "Undyed")
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Undyed%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.TextileColor == "White")
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%White%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+
+            if (filter.East)
+            {
+                if (filter.West)
+                {
+                    filteredBurials = filteredBurials.Where(x => x.Eastwest == "E" || x.Eastwest == "W");
+                }
+                else
+                {
+                    filteredBurials = filteredBurials.Where(x => x.Eastwest == "E");
+                }
+
+            }
+            else if (filter.West)
+            {
+                filteredBurials = filteredBurials.Where(x => x.Eastwest == "W");
+            }
+
+            if (filter.North)
+            {
+                if (filter.South)
+                {
+                    filteredBurials = filteredBurials.Where(x => x.Northsouth == "N" || x.Northsouth == "S");
+                }
+                else
+                {
+                    filteredBurials = filteredBurials.Where(x => x.Northsouth == "N");
+                }
+
+            }
+            else if (filter.South)
+            {
+                filteredBurials = filteredBurials.Where(x => x.Northsouth == "S");
+            }
+
+            if (filter.SquareEastWest != null)
+            {
+                filteredBurials = filteredBurials.Where(x => Convert.ToDecimal(x.Squareeastwest) == filter.SquareEastWest);
+            }
+
+            if (filter.SquareNorthSouth != null)
+            {
+                filteredBurials = filteredBurials.Where(x => Convert.ToDecimal(x.Squarenorthsouth) == filter.SquareNorthSouth);
+            }
+
+            var area = new List<string>();
+
+            if (filter.SouthWestArea)
+            {
+                area.Add("SW");
+            }
+
+            if (filter.SouthEastArea)
+            {
+                area.Add("SE");
+            }
+
+            if (filter.NorthEastArea)
+            {
+                area.Add("NE");
+            }
+            if (filter.NorthWestArea)
+            {
+                area.Add("NW");
+            }
+            if (area.Count > 0)
+            {
+                filteredBurials = filteredBurials.Where(x => area.Contains(x.Area));
+            }
+
+            if (filter.BurialNumber != null)
+            {
+                filteredBurials = filteredBurials.Where(x => Convert.ToDecimal(x.Burialnumber) == filter.BurialNumber);
+            }
+
+
+
+
+
+            List<Burialmain> resultsBurials = filteredBurials.ToList();
 
             ViewBag.Changes = filter;
 
