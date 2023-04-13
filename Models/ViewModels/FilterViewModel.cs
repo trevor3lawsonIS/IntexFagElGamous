@@ -21,5 +21,15 @@
         public bool Full { get; set; }
         public bool Partial { get; set; }
         public bool Bones { get; set; }
+        public bool ColorYellow { get; set; }
+        public bool ColorPurple { get; set; }
+        public bool ColorRed { get; set; }
+        public bool ColorBrown{ get; set; }
+        public bool ColorGreen { get; set; }
+        public bool ColorWhite { get; set; }
+        public bool ColorBlue { get; set; }
+        public bool ColorBlack { get; set; }
+        public bool ColorUndyed { get; set; }
+        public bool ColorOrange { get; set; }
     }
 }

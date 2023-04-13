@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;
 using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace IntexFagElGamous.Controllers
 {
@@ -55,6 +56,8 @@ namespace IntexFagElGamous.Controllers
         {
 
             IQueryable<Burialmain> filteredBurials = IntexContext.Burialmains;
+            IQueryable<Textile> filteredTextiles = IntexContext.Textiles;
+            IQueryable<Color> filteredColors = IntexContext.Colors;
 
             if (filter.Male)
             {
@@ -180,7 +183,142 @@ namespace IntexFagElGamous.Controllers
                 filteredBurials = filteredBurials.Where(x => wrapping.Contains(x.Wrapping));
             }
 
-            List<Burialmain> results = filteredBurials.ToList();
+            //List<Burialmain> resultsBurials = filteredBurials.ToList();
+
+            var colorNames = new List<string>();
+
+            if (filter.ColorGreen)
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Green%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.ColorBlack)
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Black%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.ColorBlue)
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Blue%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.ColorBrown)
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Brown%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.ColorYellow)
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Yellow%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.ColorOrange)
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Oranged%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.ColorPurple)
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Purple%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.ColorRed)
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Red%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.ColorUndyed)
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%Undyed%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            if (filter.ColorWhite)
+            {
+                var colors = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join Color_Textile ct on t.Id = ct.main$textileid " +
+                    $"join Color c on ct.main$colorid = c.Id " +
+                    $"where c.value like '%White%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => colors.Contains(x));
+            }
+            
+            List<Burialmain> resultsBurials = filteredBurials.ToList();
 
             ViewBag.Changes = filter;
 
