@@ -224,6 +224,7 @@ namespace IntexFagElGamous.Controllers
         [HttpGet]
         public IActionResult CRUDadd()
         {
+
             var maxId = IntexContext.Burialmains.Max(x => x.Id);
             var burial = new Burialmain { Id = maxId + 1 };
             return View(burial);
