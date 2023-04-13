@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Roles";
+}
+<h1>Roles</h1>
+<form asp-controller="Admin" asp-action="CreateRole" method="post">
+    <div class="form-group">
+        <label for="roleName">Role name:</label>
+        <input type="text" class="form-control" id="roleName" name="roleName" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model)
+        {
+            <tr>
+                <td>@role.Name</td>
+                <td>
+                    <a asp-controller="Admin" asp-action="DeleteRole" asp-route-id="@role.Id" class="btn"><img src="https://drive.google.com/uc?export=view&id=1K032fPehmOZbf95TV9Hv4OHE-_JeRolN" />Delete</a>
+                    <a asp-controller="Admin" asp-action="AddUserToRole" asp-route-id="@role.Id" class="btn"><img src="~/img/icons8-edit.svg" />Add User To Role</a>
+                    <a asp-controller="Admin" asp-action="RemoveUserFromRole" asp-route-id="@role.Id" class="btn"><img src="~/img/icons8-edit.svg" />Remove User From Role</a>
+
+                </td>
+            </tr>
+            
+
+        }
+    </tbody>
+</table>

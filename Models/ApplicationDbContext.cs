@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace IntexFagElGamous.Models
@@ -10,4 +11,10 @@ namespace IntexFagElGamous.Models
         {
         }
     }
+
+    public class ApplicationUser : IdentityUser
+    {
+        public string Role { get; set; }
+    }
+
 }
