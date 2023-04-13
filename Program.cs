@@ -16,10 +16,18 @@ builder.Services.AddDbContext<intexmummyContext>(options =>
     options.UseNpgsql(connectionString2));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+//IDENTITY
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+//builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+//    .AddEntityFrameworkStores<ApplicationDbContext>()
+//    .AddDefaultTokenProviders();
+
+
 builder.Services.AddControllersWithViews();
 
+//COOKIES
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
     // This lambda determines whether user consent for non-essential
@@ -27,6 +35,8 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.CheckConsentNeeded = context => true;
     options.MinimumSameSitePolicy = SameSiteMode.None;
 });
+
+//PASSWORD SETTINGS
 builder.Services.Configure<IdentityOptions>(options =>
 {
     // Default Password settings.
