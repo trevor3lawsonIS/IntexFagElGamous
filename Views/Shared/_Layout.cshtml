@@ -18,24 +18,24 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+                        <li class="nav-item m-1">
                         <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item m-1">
                         <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="Burials">Burials</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item m-1">
                         <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="Supervised">Predictions</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item m-1">
                         <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="Unsupervised">Graphs</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item m-1">
                         <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     @if (SignInManager.IsSignedIn(User))
                     {
-                        <li class="nav-item">
+                        <li class="nav-item m-1">
                             <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="CRUDadd">Add Records</a>
                         </li>
                     }
@@ -62,5 +62,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
