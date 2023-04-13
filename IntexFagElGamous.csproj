@@ -25,4 +25,12 @@
     <Folder Include="wwwroot\lib\qrcode\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include=".ebextensions - Copy\00_install_certbot.config" CopyToPublishDirectory="Always"/>
+    <None Include=".ebextensions - Copy\01_open_https_port.config" CopyToPublishDirectory="Always"/>
+    <None Include=".ebextensions - Copy\02_grant_executable_rights.config" CopyToPublishDirectory="Always"/>
+    <None Include=".ebextensions - Copy\03_renew_ssl_certificate_cron_job.config" CopyToPublishDirectory="Always"/>
+    <None Include=".platform - Copy\hooks\postdeploy\00_get_certificate.sh" CopyToPublishDirectory="Always"/>
+  </ItemGroup>
+
 </Project>
