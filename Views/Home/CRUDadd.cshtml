@@ -13,7 +13,7 @@
 
 <h2>Mummy:</h2>
 
-<form method="post" id="filter">
+<form method="post" id="filter" class="form-check">
     <input type="hidden" asp-for="Id" />
 
     <label asp-for="Sex">Sex: </label>
@@ -83,3 +83,8 @@
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+<br /><br />
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+
