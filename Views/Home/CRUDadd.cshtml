@@ -4,6 +4,13 @@
 
 @model Burialmain
 
+<script>
+    function toggle(){
+        var div = document.getElementById("moreInfo");
+        div.style.display = div.style.display == "none" ? "block" : "none";
+    }
+</script>
+
 <h2>Mummy:</h2>
 
 <form method="post" id="filter" class="form-check">
@@ -40,7 +47,37 @@
         <option value="R">Red</option>
         <option value="D">Blond</option>
         <option value="U">Unknown</option>
+    </select><br /><br /><br />
+
+
+    <button type="button" onclick="toggle()" class="btn">More Options</button><br />
+
+    <div name="moreInfo" id="moreInfo" style="display:none !important">
+    <h2>Location Information:</h2>
+    <label asp-for="Squarenorthsouth">Square North-South</label>
+    <input type="number" asp-for="Squarenorthsouth" /><br />
+
+    <label asp-for="Squareeastwest">Square East-West</label>
+    <input type="number" asp-for="Squareeastwest" /><br />
+
+    <label asp-for="Eastwest">Eastwest</label>
+    <select asp-for="Eastwest">
+        <option value="E">East</option>
+        <option value="W">West</option>
     </select><br />
+    <label asp-for="Northsouth">Northsouth</label>
+    <select asp-for="Northsouth">
+        <option value="N">North</option>
+        <option value="S">South</option>
+    </select><br />
+
+    <label asp-for="Southtofeet">South to Feet</label>
+    <input type="number" asp-for="Southtofeet" /><br />
+
+    <label asp-for="Southtohead">South to Head</label>
+    <input type="number" asp-for="Southtohead" /><br />
+    </div>
+
 
     <br />
 
