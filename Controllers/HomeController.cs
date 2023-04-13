@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing.Printing;
 
 namespace IntexFagElGamous.Controllers
 {
@@ -417,8 +418,20 @@ namespace IntexFagElGamous.Controllers
 
         public IActionResult Summary(long id)
         {
+            var idNum = id;
             var burial = IntexContext.Burialmains.Single(x=>x.Id == id);
-            return View(burial);
+            var textileBurial = IntexContext.BurialmainTextiles.SingleOrDefault(x=>x.MainBurialmainid == burial.Id);
+            var textile = IntexContext.Textiles.SingleOrDefault(x => x.Id == textileBurial.MainTextileid);
+
+            var summary = new SummaryViewModel
+            {
+                Burialmains = burial as IQueryable<Burialmain>,
+                BurialmainTextiles = textileBurial as IQueryable<BurialmainTextile>,
+                Textiles = textile as IQueryable<Textile>
+            };
+
+
+            return View(summary);
         }
       
 
