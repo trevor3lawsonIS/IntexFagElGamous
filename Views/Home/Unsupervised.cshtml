@@ -9,14 +9,13 @@
     <div class="text-center">
         <h1 class="display-4">Mummy Age Exploration</h1>
         <form method="post">
-            <label for="Chart">Choose to view relationship with Age: </label>
+            <label for="Chart">Select an option to view relationship with Age: </label>
             <select asp-for="Chart" id="Chart">
                 <option>Select an Option:</option>
                 <option value="A">Adult vs Children</option>
                 <option value="B">Depth</option>
                 <option value="C">Head Direction</option>
                 <option value="F">Wrapping</option>
-                <option value="G">Show 3d Graph</option>
             </select>
             <br />
             <br />
@@ -24,6 +23,17 @@
 
         </form>
         <br />
+        <p>
+            By comparing mummy data over time, we have identified numerous trends that vary depending on the mummy's age. Head direction,
+            burial depth, and whether the mummy is a child or adult all exhibit different trends over time, and these trends may reveal details
+            about the mummy's social class and religion. Take a look at the 3D graph below and use the buttons above to explore other data
+            visualizations.
+        </p>
+        <img src="https://drive.google.com/uc?export=view&id=1kNPtdVYPmYhShrpEwm2dFaVT9ZbVwYxl" height="600" width="700" />
+        <br />
+        <p>
+            The graphic shows a 3d representation of Burial Depth, Mummy Age, and Wrapping Type. The different colors represent clusters of data that are similar to each other.
+        </p>
 
         @{
             if (Model != null)
@@ -36,7 +46,7 @@
                             In this graphic, Mummy Age is from earliest to lastest going left to right. On the y-axis, one represents a child and zero represents an adult. The different colors represent clusters of data that are similar to each other.<br><br>
                             As you can see, no children were before 1900 years ago. This could represent a correlation between the age of the mummy and whether they were a child or adult. <br><br>
                             One possible reason for this change was that mummification was reserved for the elite class early on. It was more common for an adult to be mummified vs a child. <br><br>
-                            However, after mummification became more widely spread, more people that could become mummified would do it regardless of social status or age. 
+                            However, after mummification became more widely spread, more people that could become mummified would do it regardless of social status or age.
                         </p>
                         break;
                     case "B":
@@ -64,12 +74,6 @@
                             The wrapping of mummies discovered by the BYU Egypt Archeology team varied significantly, with some mummies fully wrapped, others partially wrapped, and some not wrapped at all. This variation can be attributed to several factors, including the social status of the individual, their condition at the time of mummification, and their religious beliefs.<br><br>
                             Wealthy or prominent individuals were usually wrapped more elaborately as a symbol of their status, while those of lower social status may have only been partially wrapped or left unwrapped. Additionally, Christian or Muslim mummies may have been buried without wrapping due to their different beliefs regarding the afterlife.<br><br>
                             Understanding the factors that influenced the wrapping of mummies provides valuable insights into the religious and cultural practices of ancient Egyptian society.
-                        </p>
-                        break;
-                    case "G":
-                        <img src="https://drive.google.com/uc?export=view&id=1kNPtdVYPmYhShrpEwm2dFaVT9ZbVwYxl" height="600" width="700" />
-                        <p>
-                            The graphic shows a 3d representation of Burial Depth, Mummy Age, and Wrapping Type. The different colors represent clusters of data that are similar to each other.
                         </p>
                         break;
                 }
