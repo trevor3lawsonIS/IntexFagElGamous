@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Delete User From Role";
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in ViewBag.roles)
+        {
+            <tr>
+                <td>@role.Name</td>
+                <td>
+                    <form method="post" asp-controller="Admin" asp-action="DeleteUserFromRole">
+                        <input type="hidden" name="userId" value="@Model.UserId" />
+                        <input type="hidden" name="roleName" value="@role.Name" />
+                        <button type="submit" class="btn btn-primary">Delete User From Role</button>
+                        <a asp-controller="Admin" asp-action="Users" class="btn btn-primary">Cancel</a>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

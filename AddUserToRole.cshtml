@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Add User To Role";
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in ViewBag.roles)
+        {
+            <tr>
+                <td>@role.Name</td>
+                <td>
+                    <form method="post" asp-controller="Admin" asp-action="AddUserToRole">
+                        <input type="hidden" name="userId" value="@Model.UserId" />
+                        <input type="hidden" name="roleName" value="@role.Name" />
+                        <button type="submit" class="btn btn-primary">Add User To Role</button>
+                        <a asp-controller="Admin" asp-action="Users" class="btn btn-primary">Cancel</a>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Users";
+}
+<h1>Users</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Email</th>
+            @*<th>Role</th>
+            <th>Options</th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                @*<td>@user.Role</td>*@
+                <td>
+                    <a asp-controller="Admin" asp-action="UpdateUser" asp-route-userid="@user.Id" class="btn"><img src="~/img/icons8-edit.svg" />Edit</a>
+                    <a asp-controller="Admin" asp-action="DeleteUser" asp-route-userid="@user.Id" class="btn" onclick="return confirm('Are you sure you want to delete this user?')"><img src="https://drive.google.com/uc?export=view&id=1K032fPehmOZbf95TV9Hv4OHE-_JeRolN" />Delete</a>
+                    <a asp-controller="Admin" asp-action="AddUserToRole" asp-route-userid="@user.Id" class="btn"><img src="~/img/icons8-edit.svg" />Add Roles To User</a>
+                    <a asp-controller="Admin" asp-action="DeleteUserFromRole" asp-route-userid="@user.Id" class="btn"><img src="https://drive.google.com/uc?export=view&id=1K032fPehmOZbf95TV9Hv4OHE-_JeRolN" />Remove Roles From User</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
