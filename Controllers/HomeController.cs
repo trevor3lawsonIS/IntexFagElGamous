@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IntexFagElGamous.Controllers
 {
@@ -541,6 +542,7 @@ namespace IntexFagElGamous.Controllers
             return View(x);
         }
 
+        [Authorize(Roles = "Admin, Researcher")]
         [HttpGet]
         public IActionResult CRUDadd()
         {
@@ -549,7 +551,8 @@ namespace IntexFagElGamous.Controllers
             var burial = new Burialmain { Id = maxId + 1 };
             return View(burial);
         }
-        
+
+        [Authorize(Roles = "Admin, Researcher")]
         [HttpPost]
         public IActionResult CRUDadd(Burialmain burial)
         {
@@ -559,12 +562,15 @@ namespace IntexFagElGamous.Controllers
             return View("CRUDconfirm", burial);
         }
 
+        [Authorize(Roles = "Admin, Researcher")]
         [HttpGet]
         public IActionResult CRUDdelete(long id)
         {
             var burial = IntexContext.Burialmains.Single(x => x.Id == id);
             return View(burial);
         }
+
+        [Authorize(Roles = "Admin, Researcher")]
         [HttpPost]
         public IActionResult CRUDdelete(Burialmain burial)
         {
@@ -573,12 +579,14 @@ namespace IntexFagElGamous.Controllers
             return RedirectToAction("Burials");
         }
 
+        [Authorize(Roles = "Admin, Researcher")]
         [HttpGet]
         public IActionResult CRUDedit(long id)
         {
             var burial = IntexContext.Burialmains.Single(x => x.Id == id);
             return View("CRUDadd", burial);
         }
+        [Authorize(Roles = "Admin, Researcher")]
         [HttpPost]
         public IActionResult CRUDedit(Burialmain burial)
         {
