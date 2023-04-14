@@ -83,7 +83,7 @@ app.UseAuthorization();
 app.Use(async (context, next) =>
 {
     context.Response.Headers.Add("Content-Security-Policy", "default-src 'self' wss://localhost:44330/IntexFagElGamous/; script-src 'self' https://ajax.googleapis.com 'unsafe-inline'; style-src 'self' https://ajax.googleapis.com; font-src 'self'; img-src " +
-        "'self' data: https:; frame-src 'self'; connect-src 'self' wss://localhost:44303/ wss://intexmummies.party/ wss://localhost:44374/");
+        "'self' data: https:; frame-src 'self'; connect-src 'self' * wss:");
     await next();
 });
 
