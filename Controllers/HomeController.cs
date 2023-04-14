@@ -618,7 +618,7 @@ namespace IntexFagElGamous.Controllers
         public IActionResult CRUDedit(long id)
         {
             var burial = IntexContext.Burialmains.Single(x => x.Id == id);
-            return View("CRUDadd", burial);
+            return View("CRUDadd_Basic", burial);
         }
         [Authorize(Roles = "Admin, Researcher")]
         [HttpPost]

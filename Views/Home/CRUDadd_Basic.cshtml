@@ -1,0 +1,134 @@
+﻿@{
+}
+
+@model Burialmain
+
+<script>
+    window.onload = function () {
+        var div = document.getElementById("moreInfo");
+        div.style.display = "none";
+    }
+    function toggle() {
+        var div = document.getElementById("moreInfo");
+        div.style.display = div.style.display == "none" ? "block" : "none";
+    }
+</script>
+
+
+
+<form method="post" id="filter" class="form-check">
+
+    <div class="row">
+        <div class="col-4">
+            <h2>Mummy:</h2>
+            <input type="hidden" asp-for="Id" />
+
+            <label asp-for="Sex">Sex: </label>
+            <select asp-for="Sex">
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="">Null</option>
+            </select><br />
+
+            <label asp-for="Headdirection">Head Direction: </label>
+            <select asp-for="Headdirection">
+                <option value="W">West</option>
+                <option value="E">East</option>
+                <option value="">Null</option>
+            </select><br />
+
+            <label asp-for="Depth">Depth: </label>
+            <input type="number" asp-for="Depth" min="0" step=".01" /> <br />
+
+            <label asp-for="Length">Length: </label>
+            <input type="number" asp-for="Length" min="0" step=".01" /> <br />
+
+            <label asp-for="Adultsubadult">Adult or Child: </label>
+            <select asp-for="Adultsubadult">
+                <option value="A">Adult</option>
+                <option value="C">Child</option>
+                <option value="">Null</option>
+            </select><br />
+
+            <label asp-for="Haircolor">Haircolor: </label>
+            <select asp-for="Haircolor">
+                <option value="B">Brown</option>
+                <option value="K">Black</option>
+                <option value="A">Brown/Red</option>
+                <option value="R">Red</option>
+                <option value="D">Blond</option>
+                <option value="U">Unknown</option>
+            </select><br /><br /><br />
+        </div>
+
+        <div class="col-2">
+            <button type="button" onclick="toggle()" class="btn btn-outline-secondary">Advanced Options</button><br />
+        </div>
+
+        <div name="moreInfo" id="moreInfo" style="display:none !important" class="col-6">
+            <h2>Location Information:</h2>
+            <label asp-for="Burialnumber">Burialnumber</label>
+            <input type="number" asp-for="Burialnumber" /><br />
+
+            <label asp-for="Area">Area: </label>
+            <select asp-for="Area">
+                <option value="SE">South-East</option>
+                <option value="SW">South-West</option>
+                <option value="NE">North-East</option>
+                <option value="NW">North-West</option>
+            </select><br />
+
+            <label asp-for="Squarenorthsouth">Square North-South</label>
+            <input type="number" asp-for="Squarenorthsouth" /><br />
+
+            <label asp-for="Squareeastwest">Square East-West</label>
+            <input type="number" asp-for="Squareeastwest" /><br />
+
+            <label asp-for="Eastwest">Eastwest</label>
+            <select asp-for="Eastwest">
+                <option value="E">East</option>
+                <option value="W">West</option>
+            </select><br />
+            <label asp-for="Northsouth">Northsouth</label>
+            <select asp-for="Northsouth">
+                <option value="N">North</option>
+                <option value="S">South</option>
+            </select><br />
+
+            <label asp-for="Southtofeet">South to Feet</label>
+            <input type="number" asp-for="Southtofeet" /><br />
+
+            <label asp-for="Southtohead">South to Head</label>
+            <input type="number" asp-for="Southtohead" /><br />
+
+            <label asp-for="Westtofeet">West to Feet</label>
+            <input type="number" asp-for="Westtofeet" /><br />
+
+            <label asp-for="Westtohead">West to Head</label>
+            <input type="number" asp-for="Westtohead" /><br /><br />
+
+            <h2>Notes:</h2>
+            <label asp-for="Fieldbookpage">Field Book Page</label>
+            <input asp-for="Fieldbookpage" /><br />
+
+            <label asp-for="Fieldbookexcavationyear">Field Book Excavation Year</label>
+            <input asp-for="Fieldbookexcavationyear" /><br />
+
+            <label asp-for="Preservation">Preservation</label>
+            <input type="text" asp-for="Preservation" /><br />
+
+            <label asp-for="Text">Text</label>
+            <input type="text" asp-for="Text" /><br /><br />
+
+        </div>
+    </div>
+
+    <br />
+    <div class="row">
+        <button type="submit" class="btn btn-primary col-3">Submit</button>
+    </div>
+</form>
+<br />
+<br />
+
+
