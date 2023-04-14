@@ -34,6 +34,7 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     // cookies is needed for a given request.
     options.CheckConsentNeeded = context => true;
     options.MinimumSameSitePolicy = SameSiteMode.None;
+    options.ConsentCookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 
 //PASSWORD SETTINGS
