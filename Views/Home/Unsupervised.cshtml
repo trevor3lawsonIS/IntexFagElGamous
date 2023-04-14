@@ -23,17 +23,7 @@
 
         </form>
         <br />
-        <p>
-            By comparing mummy data over time, we have identified numerous trends that vary depending on the mummy's age. Head direction,
-            burial depth, and whether the mummy is a child or adult all exhibit different trends over time, and these trends may reveal details
-            about the mummy's social class and religion. Take a look at the 3D graph below and use the buttons above to explore other data
-            visualizations.
-        </p>
-        <img src="https://drive.google.com/uc?export=view&id=1kNPtdVYPmYhShrpEwm2dFaVT9ZbVwYxl" height="600" width="700" />
-        <br />
-        <p>
-            The graphic shows a 3d representation of Burial Depth, Mummy Age, and Wrapping Type. The different colors represent clusters of data that are similar to each other.
-        </p>
+
 
         @{
             if (Model != null)
@@ -78,6 +68,20 @@
                         break;
                 }
 
+            }
+            else
+            {
+                <p>
+                    By comparing mummy data over time, we have identified numerous trends that vary depending on the mummy's age. Head direction,
+                    burial depth, and whether the mummy is a child or adult all exhibit different trends over time, and these trends may reveal details
+                    about the mummy's social class and religion. Take a look at the 3D graph below and use the buttons above to explore other data
+                    visualizations.
+                </p>
+                <img src="https://drive.google.com/uc?export=view&id=1kNPtdVYPmYhShrpEwm2dFaVT9ZbVwYxl" height="600" width="700" />
+                <br />
+                <p>
+                    The graphic shows a 3d representation of Burial Depth, Mummy Age, and Wrapping Type. The different colors represent clusters of data that are similar to each other.
+                </p>
             }
         }
 
