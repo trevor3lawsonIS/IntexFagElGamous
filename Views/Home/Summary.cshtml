@@ -15,7 +15,7 @@
         <tr>
             <th>Burial Number:</th>
             <th colspan="2">@Model.Burialnumber</th>
-            @if (SignInManager.IsSignedIn(User))
+            @if (User.IsInRole("Researcher") || User.IsInRole("Admin"))
             {
                 <th>
                     <a asp-controller="Home" asp-action="CRUDedit" asp-route-id="@Model.Id" class="btn"><img src="~/img/icons8-edit.svg" />Edit</a>
