@@ -27,6 +27,7 @@ namespace IntexFagElGamous.Controllers
             return View();
         }
 
+        //BURIAL INFORMATION
         [HttpGet]
         public IActionResult Burials(int pageNum = 1)
         {
@@ -524,6 +525,8 @@ namespace IntexFagElGamous.Controllers
             return View(x);
         }
 
+
+        //SUMMARY PAGE
         public IActionResult Summary(long id)
         {
             var burial = IntexContext.Burialmains.Single(x=>x.Id == id);
@@ -531,6 +534,7 @@ namespace IntexFagElGamous.Controllers
         }
       
 
+        //UNPSERVISED MODELS
         [HttpGet]
         public IActionResult Unsupervised()
         {
@@ -542,6 +546,8 @@ namespace IntexFagElGamous.Controllers
             return View(x);
         }
 
+
+        //BURIAL CRUD 
         [Authorize(Roles = "Admin, Researcher")]
         [HttpGet]
         public IActionResult CRUDadd()
@@ -595,6 +601,8 @@ namespace IntexFagElGamous.Controllers
             return RedirectToAction("Summary", burial);
         }
 
+
+        //PRIVACY PAGE
         public IActionResult Privacy()
         {
             return View();
@@ -607,6 +615,7 @@ namespace IntexFagElGamous.Controllers
         }
 
 
+        //SUPERVISED MODELS
         [HttpGet]
         public ActionResult Supervised(ErrorViewModel error)
         {
@@ -709,6 +718,7 @@ namespace IntexFagElGamous.Controllers
             }
         }
 
+        //RESUTLS FROM SUPERVISED PAGE
         [HttpGet]
         public ActionResult MyResult(int ResultFromApi)
         {
