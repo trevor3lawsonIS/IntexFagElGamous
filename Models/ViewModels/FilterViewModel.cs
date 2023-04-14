@@ -34,6 +34,8 @@
         public bool SouthEastArea { get; set; }
         public bool SouthWestArea { get; set; }
         public int? BurialNumber { get; set; }
+        public string? TextileFunction { get; set; }
+        public string? FaceBundle { get; set; }
 
     }
 }
