@@ -22,7 +22,7 @@ namespace IntexFagElGamous.Controllers
         }
 
 
-        //DELETING
+        //DELETING USER
         [HttpGet]
         public async Task<IActionResult> DeleteUser(string userId)
         {
@@ -43,6 +43,8 @@ namespace IntexFagElGamous.Controllers
             return RedirectToAction("Users", "Admin");
         }
 
+
+        //EDITING/DELETING ROLES
         [HttpGet]
         public async Task<IActionResult> EditRole(string roleId)
         {
@@ -99,6 +101,8 @@ namespace IntexFagElGamous.Controllers
             return RedirectToAction("Roles");
         }
 
+
+        //EDITING USER ROLES
         [HttpGet]
         public async Task<IActionResult> DeleteUserFromRole(string userId)
         {
@@ -108,8 +112,6 @@ namespace IntexFagElGamous.Controllers
             var roles = allRoles.Where(r => userRoles.Contains(r.Name)).ToList();
             ViewBag.roles = roles;
 
-            //var user = await _userManager.FindByIdAsync(userId);
-
             var model = new DeleteUserFromRoleViewModel
             {
                 UserId = userId,
@@ -117,7 +119,6 @@ namespace IntexFagElGamous.Controllers
             return View(model);
         }
 
-        //DELETING USER ROLES
         [HttpPost]
         public async Task<IActionResult> DeleteUserFromRole(string userId, string roleName)
         {
@@ -144,7 +145,6 @@ namespace IntexFagElGamous.Controllers
             var allRoles = await _roleManager.Roles.ToListAsync();
             var roles = allRoles.Where(r => !userRoles.Contains(r.Name)).ToList();
             ViewBag.roles = roles;
-            //var user = await _userManager.FindByIdAsync(userId);
 
             var model = new AddUserToRoleViewModel
             {
@@ -172,9 +172,7 @@ namespace IntexFagElGamous.Controllers
         }
 
         //UDATE USER
-        //[HttpGet("api/[action]")]
         [HttpGet]
-        //public async Task<IActionResult> UpdateUser(string userId, string email)
         public async Task<IActionResult> UpdateUser(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -182,16 +180,6 @@ namespace IntexFagElGamous.Controllers
             {
                 return NotFound("User not found.");
             }
-
-            //user.Email = email;
-
-            //var result = await _userManager.UpdateAsync(user);
-            //if (!result.Succeeded)
-            //{
-            //    return BadRequest(result.Errors);
-            //}
-
-            //return RedirectToAction("Index", "Admin");
 
             var userRoles = await _userManager.GetRolesAsync(user);
 
@@ -260,11 +248,6 @@ namespace IntexFagElGamous.Controllers
             var roles = await _roleManager.Roles.ToListAsync();
             return View(roles);
         }
-        //public async Task<IActionResult> Users()
-        //{
-        //    var users = await _userManager.Users.ToListAsync();
-        //    return View(users);
-        //}
 
         public async Task<IActionResult> Users()
         {

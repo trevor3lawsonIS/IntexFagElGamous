@@ -16,6 +16,7 @@ namespace IntexFagElGamous.Models
         {
         }
 
+        //GETTING MODEL TYPES
         public virtual DbSet<Analysis> Analyses { get; set; } = null!;
         public virtual DbSet<AnalysisTextile> AnalysisTextiles { get; set; } = null!;
         public virtual DbSet<Artifactfagelgamousregister> Artifactfagelgamousregisters { get; set; } = null!;
