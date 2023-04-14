@@ -18,42 +18,41 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item m-1">
-                        <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item m-1">
-                        <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="Burials">Burials</a>
-                        </li>
-                        <li class="nav-item m-1">
-                        <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="Supervised">Predictions</a>
-                        </li>
-                        <li class="nav-item m-1">
-                        <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="Unsupervised">Graphs</a>
-                        </li>
-                        <li class="nav-item m-1">
-                        <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    @if (User.IsInRole("Researcher") || User.IsInRole("Admin"))
-                    {
-                        <li class="nav-item m-1">
-                            <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="CRUDadd">Add Records</a>
-                        </li>
-                    }
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item m-1">
+                    <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item m-1">
+                    <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="Burials">Burials</a>
+                    </li>
+                    <li class="nav-item m-1">
+                    <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="Supervised">Predictions</a>
+                    </li>
+                    <li class="nav-item m-1">
+                    <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="Unsupervised">Graphs</a>
+                    </li>
+                    <li class="nav-item m-1">
+                    <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    </li>
+                @if (User.IsInRole("Researcher") || User.IsInRole("Admin"))
+                {
+                    <li class="nav-item m-1">
+                        <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Home" asp-action="CRUDadd">Add Records</a>
+                    </li>
+                }
                     
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <li class="nav-item m-1">
-                            <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Admin" asp-action="Roles">Add Roles</a>
-                        </li>
-                        <li class="nav-item m-1">
-                            <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Admin" asp-action="Users">Edit Users</a>
-                        </li>
-                    }
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item m-1">
+                        <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Admin" asp-action="Roles">Add Roles</a>
+                    </li>
+                    <li class="nav-item m-1">
+                        <a class="nav-link text-dark btn btn-outline-secondary" asp-area="" asp-controller="Admin" asp-action="Users">Edit Users</a>
+                    </li>
+                }
 
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
+                </ul>
+                <partial name="_LoginPartial" />
             </div>
         </nav>
     </header>
