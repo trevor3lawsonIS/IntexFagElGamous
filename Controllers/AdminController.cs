@@ -43,7 +43,45 @@ namespace IntexFagElGamous.Controllers
             return RedirectToAction("Users", "Admin");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> EditRole(string roleId)
+        {
+            var role = await _roleManager.FindByIdAsync(roleId);
+            if (role == null)
+            {
+                return NotFound();
+            }
+
+            var model = new EditRoleViewModel
+            {
+                RoleId = role.Id,
+                RoleName = role.Name
+            };
+
+            return View(model);
+        }
+
         [HttpPost]
+        public async Task<IActionResult> UpdateRole(string roleId, string roleName)
+        {
+            var role = await _roleManager.FindByIdAsync(roleId);
+            if (role == null)
+            {
+                return NotFound();
+            }
+
+            role.Name = roleName;
+
+            var result = await _roleManager.UpdateAsync(role);
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.Errors);
+            }
+
+            return RedirectToAction("Roles");
+        }
+
+        [HttpGet]
         public async Task<IActionResult> DeleteRole(string roleId)
         {
             var role = await _roleManager.FindByIdAsync(roleId);
@@ -58,7 +96,7 @@ namespace IntexFagElGamous.Controllers
                 return BadRequest(result.Errors);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Roles");
         }
 
         [HttpGet]
@@ -215,7 +253,6 @@ namespace IntexFagElGamous.Controllers
             // If we got this far, something failed, redisplay form
             return View(roleName);
         }
-
 
         //PAGES
         public async Task<IActionResult> Roles()
