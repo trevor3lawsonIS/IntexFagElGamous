@@ -6,6 +6,11 @@
     var cookieStr = consentFeatureFlag?.CreateConsentCookie();
 }
 
+@*@{
+    // Check if the consent cookie exists
+    var hasConsentCookie = Request.Cookies.ContainsKey("cookieConsent");
+}*@
+
 @if (showBannerFlag)
 {
     <div id="cookieConsentdiv">
