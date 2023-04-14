@@ -82,7 +82,19 @@
         <option value="Orange">Orange</option>
         <option value="Undyed">Undyed</option>
     </select><br />
-    <br />
+
+    <h5>Choose Fragment Type</h5>
+    <select asp-for="TextileFunction">
+        <option value="">Choose Type</option>
+        <option value="Blanket">Blanket</option>
+        <option value="Cordage">Cordage</option>
+        <option value="Face">Face</option>
+        <option value="Fragmentary">Fragmentary</option>
+        <option value="Head">Head</option>
+        <option value="Other">Other</option>
+        <option value="Ribbon">Ribbon</option>
+        <option value="Tunic">Tunic</option>
+    </select><br />
 
     <h5>Choose Location</h5>
     <input type="checkbox" asp-for="North" />
@@ -111,7 +123,13 @@
     <br />
     <label asp-for="BurialNumber">Burial Number:</label>
     <input type="number" asp-for="BurialNumber" min="0" step="0.01">
+    <br />
 
+    <h5>Face Bundle</h5>
+    <select asp-for="FaceBundle">
+        <option value="">No</option>
+        <option value="Yes">Yes</option>
+    </select><br />
 
 
 

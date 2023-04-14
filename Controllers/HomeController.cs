@@ -388,7 +388,115 @@ namespace IntexFagElGamous.Controllers
                 filteredBurials = filteredBurials.Where(x => Convert.ToDecimal(x.Burialnumber) == filter.BurialNumber);
             }
 
+            if (filter.TextileFunction == "Blanket")
+            {
+                var textiles = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join textilefunction_textile tft on t.Id = tft.main$textileid " +
+                    $"join textilefunction tf on tft.main$textilefunctionid = tf.id " +
+                    $"where tf.value like 'Blanket%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => textiles.Contains(x));
+            }
+            if (filter.TextileFunction == "Cordage")
+            {
+                var textiles = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join textilefunction_textile tft on t.Id = tft.main$textileid " +
+                    $"join textilefunction tf on tft.main$textilefunctionid = tf.id " +
+                    $"where tf.value like 'Cordage%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => textiles.Contains(x));
+            }
+            if (filter.TextileFunction == "Face")
+            {
+                var textiles = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join textilefunction_textile tft on t.Id = tft.main$textileid " +
+                    $"join textilefunction tf on tft.main$textilefunctionid = tf.id " +
+                    $"where tf.value like 'Face%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => textiles.Contains(x));
+            }
+            if (filter.TextileFunction == "Fragmentary")
+            {
+                var textiles = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join textilefunction_textile tft on t.Id = tft.main$textileid " +
+                    $"join textilefunction tf on tft.main$textilefunctionid = tf.id " +
+                    $"where tf.value like 'Fragmentary%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => textiles.Contains(x));
+            }
+            if (filter.TextileFunction == "Head")
+            {
+                var textiles = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join textilefunction_textile tft on t.Id = tft.main$textileid " +
+                    $"join textilefunction tf on tft.main$textilefunctionid = tf.id " +
+                    $"where tf.value like 'Head%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => textiles.Contains(x));
+            }
+            if (filter.TextileFunction == "Other")
+            {
+                var textiles = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join textilefunction_textile tft on t.Id = tft.main$textileid " +
+                    $"join textilefunction tf on tft.main$textilefunctionid = tf.id " +
+                    $"where tf.value like 'Other%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => textiles.Contains(x));
+            }
+            if (filter.TextileFunction == "Ribbon")
+            {
+                var textiles = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join textilefunction_textile tft on t.Id = tft.main$textileid " +
+                    $"join textilefunction tf on tft.main$textilefunctionid = tf.id " +
+                    $"where tf.value like 'Ribbon%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => textiles.Contains(x));
+            }
+            if (filter.TextileFunction == "Tunic")
+            {
+                var textiles = IntexContext.Burialmains
+                    .FromSqlRaw("select b.* from Burialmain b " +
+                    $"join Burialmain_Textile bt on b.Id = bt.main$burialmainid " +
+                    $"join Textile t on bt.main$textileid = t.Id " +
+                    $"join textilefunction_textile tft on t.Id = tft.main$textileid " +
+                    $"join textilefunction tf on tft.main$textilefunctionid = tf.id " +
+                    $"where tf.value like 'Tunic%'")
+                    .Distinct()
+                    .ToList();
+                filteredBurials = filteredBurials.Where(x => textiles.Contains(x));
+            }
 
+            if (filter.FaceBundle == "Yes")
+            {
+                filteredBurials = filteredBurials.Where(x => x.Facebundles == "Y");
+            }
 
 
 
