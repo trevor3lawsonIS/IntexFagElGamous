@@ -2,7 +2,7 @@
 @{
 }
 
-@model Burialmain
+@model AddBurialViewModel
 
 <script>
     window.onload = function () {
@@ -22,37 +22,43 @@
     <div class="row">
         <div class="col-4">
     <h2>Mummy:</h2>
-    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="Burialmain.Id" />
+    <input type="hidden" asp-for="Textile.Id" />
+    <input type="hidden" asp-for="BurialmainTextile.MainTextileid" />
+    <input type="hidden" asp-for="BurialmainTextile.MainBurialmainid" />
+    <input type="hidden" asp-for="Color.Id" />
+    <input type="hidden" asp-for="ColorTextile.MainTextileid" />
+    <input type="hidden" asp-for="ColorTextile.MainColorid" />
 
-    <label asp-for="Sex">Sex: </label>
-    <select asp-for ="Sex">
+    <label asp-for="Burialmain.Sex">Sex: </label>
+            <select asp-for="Burialmain.Sex">
         <option value="M">Male</option>
         <option value="F">Female</option>
         <option value="">Null</option>
     </select><br />
 
-    <label asp-for="Headdirection">Head Direction: </label>
-    <select asp-for="Headdirection">
+            <label asp-for="Burialmain.Headdirection">Head Direction: </label>
+            <select asp-for="Burialmain.Headdirection">
         <option value="W">West</option>
         <option value="E">East</option>
         <option value="">Null</option>
     </select><br />
 
-    <label asp-for="Depth">Depth: </label>
-    <input type="number" asp-for="Depth" min="0" step=".01" /> <br />
+            <label asp-for="Burialmain.Depth">Depth: </label>
+            <input type="number" asp-for="Burialmain.Depth" min="0" step=".01" /> <br />
 
-    <label asp-for="Length">Length: </label>
-    <input type="number" asp-for="Length" min="0" step=".01" /> <br />
+            <label asp-for="Burialmain.Length">Length: </label>
+            <input type="number" asp-for="Burialmain.Length" min="0" step=".01" /> <br />
 
-    <label asp-for="Adultsubadult">Adult or Child: </label>
-    <select asp-for="Adultsubadult">
+            <label asp-for="Burialmain.Adultsubadult">Adult or Child: </label>
+            <select asp-for="Burialmain.Adultsubadult">
         <option value="A">Adult</option>
         <option value="C">Child</option>
         <option value="">Null</option>
     </select><br />
 
-    <label asp-for="Haircolor">Haircolor: </label>
-    <select asp-for="Haircolor">
+            <label asp-for="Burialmain.Haircolor">Haircolor: </label>
+            <select asp-for="Burialmain.Haircolor">
         <option value="B">Brown</option>
         <option value="K">Black</option>
         <option value="A">Brown/Red</option>
@@ -68,59 +74,69 @@
 
     <div name="moreInfo" id="moreInfo" style="display:none !important" class="col-6">
     <h2>Location Information:</h2>
-    <label asp-for="Burialnumber">Burialnumber</label>
-    <input type="number" asp-for="Burialnumber" /><br />
+            <label asp-for="Burialmain.Burialnumber">Burialnumber</label>
+            <input type="number" asp-for="Burialmain.Burialnumber" /><br />
 
-    <label asp-for="Area">Area: </label>
-    <select asp-for="Area">
+            <label asp-for="Burialmain.Area">Area: </label>
+            <select asp-for="Burialmain.Area">
         <option value="SE">South-East</option>
         <option value="SW">South-West</option>
         <option value="NE">North-East</option>
         <option value="NW">North-West</option>
     </select><br />
 
-    <label asp-for="Squarenorthsouth">Square North-South</label>
-    <input type="number" asp-for="Squarenorthsouth" /><br />
+            <label asp-for="Burialmain.Squarenorthsouth">Square North-South</label>
+            <input type="number" asp-for="Burialmain.Squarenorthsouth" /><br />
 
-    <label asp-for="Squareeastwest">Square East-West</label>
-    <input type="number" asp-for="Squareeastwest" /><br />
+            <label asp-for="Burialmain.Squareeastwest">Square East-West</label>
+            <input type="number" asp-for="Burialmain.Squareeastwest" /><br />
 
-    <label asp-for="Eastwest">Eastwest</label>
-    <select asp-for="Eastwest">
+            <label asp-for="Burialmain.Eastwest">Eastwest</label>
+            <select asp-for="Burialmain.Eastwest">
         <option value="E">East</option>
         <option value="W">West</option>
     </select><br />
-    <label asp-for="Northsouth">Northsouth</label>
-    <select asp-for="Northsouth">
+            <label asp-for="Burialmain.Northsouth">Northsouth</label>
+            <select asp-for="Burialmain.Northsouth">
         <option value="N">North</option>
         <option value="S">South</option>
     </select><br />
 
-    <label asp-for="Southtofeet">South to Feet</label>
-    <input type="number" asp-for="Southtofeet" /><br />
+            <label asp-for="Burialmain.Southtofeet">South to Feet</label>
+            <input type="number" asp-for="Burialmain.Southtofeet" /><br />
 
-    <label asp-for="Southtohead">South to Head</label>
-    <input type="number" asp-for="Southtohead" /><br />
+            <label asp-for="Burialmain.Southtohead">South to Head</label>
+            <input type="number" asp-for="Burialmain.Southtohead" /><br />
 
-    <label asp-for="Westtofeet">West to Feet</label>
-    <input type="number" asp-for="Westtofeet" /><br />
+            <label asp-for="Burialmain.Westtofeet">West to Feet</label>
+            <input type="number" asp-for="Burialmain.Westtofeet" /><br />
 
-    <label asp-for="Westtohead">West to Head</label>
-    <input type="number" asp-for="Westtohead" /><br /><br />
+            <label asp-for="Burialmain.Westtohead">West to Head</label>
+            <input type="number" asp-for="Burialmain.Westtohead" /><br /><br />
 
     <h2>Notes:</h2>
-    <label asp-for="Fieldbookpage">Field Book Page</label>
-    <input asp-for="Fieldbookpage" /><br />
+            <label asp-for="Burialmain.Fieldbookpage">Field Book Page</label>
+            <input asp-for="Burialmain.Fieldbookpage" /><br />
 
-    <label asp-for="Fieldbookexcavationyear">Field Book Excavation Year</label>
-    <input asp-for="Fieldbookexcavationyear" /><br />
+            <label asp-for="Burialmain.Fieldbookexcavationyear">Field Book Excavation Year</label>
+            <input asp-for="Burialmain.Fieldbookexcavationyear" /><br />
 
-    <label asp-for="Preservation">Preservation</label>
-    <input type="text" asp-for="Preservation" /><br />
+            <label asp-for="Burialmain.Preservation">Preservation</label>
+            <input type="text" asp-for="Burialmain.Preservation" /><br />
 
-    <label asp-for="Text">Text</label>
-    <input type="text" asp-for="Text"/><br />
+            <label asp-for="Burialmain.Text">Text</label>
+            <input type="text" asp-for="Burialmain.Text" /><br /><br />
 
+
+    <h2>Textile Information:</h2>
+    <label asp-for="Textile.Description">Textile Description:</label>
+    <input type="text" maxlength="200" asp-for="Textile.Description" />
+    <br />
+    <label asp-for="Color.Value">Color:</label>
+    <input type="text" maxlength="25" asp-for="Color.Value" />
+    <br />
+    <label asp-for="Textile.Burialnumber">Burial Number:</label>
+            <input type="text" maxlength="25" asp-for="Textile.Burialnumber" />
 
     </div>
     </div>

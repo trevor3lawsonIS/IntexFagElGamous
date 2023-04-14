@@ -549,15 +549,43 @@ namespace IntexFagElGamous.Controllers
 
             var maxId = IntexContext.Burialmains.Max(x => x.Id);
             var burial = new Burialmain { Id = maxId + 1 };
-            return View(burial);
+            var maxId2 = IntexContext.Textiles.Max(x => x.Id);
+            var textile = new Textile { Id = maxId + 1 };
+            var burialTextile = new BurialmainTextile { MainBurialmainid = maxId, MainTextileid = maxId2 };
+            var maxId3 = IntexContext.Colors.Max(x => x.Id);
+            var color = new Color { Id = maxId3 + 1 };
+            var colorTextile = new ColorTextile { MainTextileid = maxId2, MainColorid = maxId3 };
+
+            var x = new AddBurialViewModel
+            {
+                Burialmain = burial,
+                Textile = textile,
+                BurialmainTextile = burialTextile,
+                Color = color,
+                ColorTextile = colorTextile,
+            };
+            
+
+            return View(x);
         }
 
         [Authorize(Roles = "Admin, Researcher")]
         [HttpPost]
-        public IActionResult CRUDadd(Burialmain burial)
+        public IActionResult CRUDadd(AddBurialViewModel burial)
         {
+            IntexContext.Burialmains.Add(burial.Burialmain);
+            if (burial.Textile.Description != null)
+            {
+                IntexContext.Textiles.Add(burial.Textile);
+                IntexContext.BurialmainTextiles.Add(burial.BurialmainTextile);
 
-            IntexContext.Burialmains.Add(burial);
+                if (burial.Color.Value != null)
+                {
+                    IntexContext.Colors.Add(burial.Color);
+                    IntexContext.ColorTextiles.Add(burial.ColorTextile);
+                }
+            }
+
             IntexContext.SaveChanges();
             return View("CRUDconfirm", burial);
         }
